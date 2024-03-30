@@ -1,2 +1,5 @@
 .idea
+pybo.db
+8.pyc
 __pycache__
+migrations
