@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="sytle_login_account.css">
+        <title>Login | Register</title>
+    </head>
+
+    <body>
+        <div class="container" id="container">
+            <div class="form-container sign-up">
+                <form>
+                    <h1>Register</h1>
+                    <div class="social-icon">
+                        <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" class="icon"><i class="fa-solid fa-n"></i></a>
+                        <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
+                    </div>
+                    <span>or use your id for registeration</span>
+                    <input type="text" placeholder="name">
+                    <input type="text" placeholder="id">
+                    <input type="password" placeholder="password">
+                    <button>Submit</button>
+                </form>
+            </div>
+
+            <div class="form-container sign-in">
+                <form>
+                    <h1>Login</h1>
+                    <div class="social-icon">
+                        <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" class="icon"><i class="fa-solid fa-n"></i></a>
+                        <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
+                    </div>
+                    <span>or use your id password</span>
+                    <input type="text" placeholder="id">
+                    <input type="password" placeholder="password">
+                    <a href="#">Forget Your Password?</a>
+                    <button>Login</button>
+                </form>
+            </div>
+
+            <div class="toggle-container">
+                <div class="toggle">
+                    <div class="toggle-panel toggle-left">
+                        <h1>Welcome Back!</h1>
+                        <p>sign in and use the site</p>
+                        <button class="hidden" id="login">Login</button>
+                    </div>
+                    <div class="toggle-panel toggle-right">
+                        <h1>First time?</h1>
+                        <p>sign up and use the site</p>
+                        <button class="hidden" id="register">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="login_script.js"></script>
+    </body>
+</html>
