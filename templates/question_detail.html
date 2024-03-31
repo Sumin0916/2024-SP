@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-3">
+    (... 생략 ...)
+    <form action="{{ url_for('answer.create', question_id=question.id) }}" method="post" class="my-3">
+        (... 생략 ...)
+    </form>
+</div>
+{% endblock %}
