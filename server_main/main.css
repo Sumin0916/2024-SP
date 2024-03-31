@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    position: relative; 
+}
+
+.header {
+    height: 100px;
+    background-color: white;
+    position: fixed; /* Set position to fixed */
+    top: 0; /* Stick to the top of the viewport */
+    left: 0; /* Stick to the left of the viewport */
+    right: 0; /* Stretch header to full width */
+    z-index: 999; /* Ensure it's on top of other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #006694;
+}
+
+.header img {
+    width: 300px; 
+    margin-top: 15px;
+}
+
+.hero {
+    background-image: url('background.jpg'); 
+    background-size: cover; 
+    background-position: center bottom; 
+    color: white;
+    display: flex;
+    align-items: flex-end; 
+    justify-content: center; 
+    padding: 20px;
+    height: calc(100vh - 100px); 
+    position: relative; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    text-align: center; 
+    position: relative;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 92, 168, 0.5); 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.hero-text {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+.btn {
+    background-color: #ffffff; 
+    color: #009bcb; 
+    padding: 15px; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 18px; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    width: 200px; 
+    height: 200px; 
+    margin: 0px; 
+    box-shadow: 0 10px 20px rgba(51, 84, 202, 0.1); 
+}
+
+.btn:hover {
+    background-color: #009bcb; 
+    color: #ffffff; 
+    transform: translateY(-30px); 
+    height: 230px; 
+}
+
+.login-btn {
+    background-color: #ffffff; 
+    color: black; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 20px; 
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.login-btn:hover {
+    background-color: #009bcb; 
+    color: #ffffff;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-wrap: wrap; 
+}
+
+.card {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #009bcb;
+}
+
+.card-description {
+    font-size: 16px;
+    color: #009bcb;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.footer {
+    background-color: #60c1c3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+}
