@@ -8,4 +8,4 @@ def hello_pybo():
 
 @bp.route('/')
 def index():
-    return render_template('question_list.html')
+    return render_template('home.html')
