@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="{{url_for('static', filename='css/sytle_login_account.css')}}">
-        <title>Login | Register</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sytle_login_account.css')}}">
+    <title>Login | Register</title>
+</head>
 
-    <body>
-        <div class="container" id="container">
-            <div class="form-container sign-up">
-                <form>
-                    <h1>Register</h1>
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-up">
+        <form method="POST">
+            <h1>Register</h1>
 
-                    <div class="social-icon">
-                        <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-                        <a href="#" class="icon"><i class="fa-solid fa-n"></i></a>
-                        <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
-                    </div>
-                    <span>or use your id for registeration</span>
-                    <input type="text" placeholder="name">
-                    <input type="text" placeholder="id">
-                    <input type="password" placeholder="password">
-                    <button>Submit</button>
-                </form>
+            <div class="social-icon">
+                <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+                <a href="#" class="icon"><i class="fa-solid fa-n"></i></a>
+                <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
             </div>
+            <span>or use your id for registeration</span>
+            <input type="text" placeholder="name">
+            <input type="text" placeholder="id">
+            <input type="password" placeholder="password">
+            <button type="submit">Submit</button> <!-- 로그인 버튼 -->
+        </form>
+    </div>
 
-            <div class="form-container sign-in">
-                <form>
-                    <h1>로그인<br></h1>
-                    <h6>소셜 로그인</h6>
-                    <div class="social-icon">
-                        <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-                        <a href="#" class="icon"><i class="fa-solid fa-n"></i></a>
-                        <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
-                    </div>
-                    <input type="text" id="id" name="id" placeholder="아이디">
-                    <input type="password" id="pw" name="pw" placeholder="비밀번호">
-                    <a href="#">비밀번호를 잊어버리셨나요?</a>
-                    <button>로그인</button>
-                </form>
+    <div class="form-container sign-in">
+        <form method="POST">
+            <h1>로그인<br></h1>
+            <h6>소셜 로그인</h6>
+            <div class="social-icon">
+                <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+                <a href="#" class="icon"><i class="fa-solid fa-n"></i></a>
+                <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
             </div>
+            <input type="text" id="id" name="login_id" placeholder="아이디">
+            <input type="password" id="pw" name="login_pw" placeholder="비밀번호">
+            <a href="#">비밀번호를 잊어버리셨나요?</a>
+            <button type="submit">로그인</button> <!-- 로그인 버튼 -->
+        </form>
+    </div>
 
-            <div class="toggle-container">
-                <div class="toggle">
-                    <div class="toggle-panel toggle-left">
-                        <h1>Welcome Back!</h1>
-                        <p>sign in and use the site</p>
-                        <button class="hidden" id="login">Login</button>
-                    </div>
-                    <div class="toggle-panel toggle-right">
-                        <h1>First time?</h1>
-                        <p>Sign up and use the site<br><br><br><br><br></p>
+    <div class="toggle-container">
+        <div class="toggle">
+            <div class="toggle-panel toggle-left">
+                <h1>Welcome Back!</h1>
+                <p>sign in and use the site</p>
+                <button class="hidden" id="login">Login</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>First time?</h1>
+                <p>Sign up and use the site<br><br><br><br><br></p>
 
-                        <button class="Register" id="register" onclick="location.href='register'">회원가입</button>
-                    </div>
-                </div>
+                <button class="Register" id="register" onclick="location.href='register'">회원가입</button>
             </div>
         </div>
+    </div>
+</div>
 
-        <script src="login_script.js"></script>
-    </body>
+<script src="login_script.js"></script>
+</body>
 </html>
