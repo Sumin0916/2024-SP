@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin 페이지</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin 페이지</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>아이디</th>
+                <th>패스워드(해싱됨)</th>
+                <th>이름</th>
+                <th>학번</th>
+                <th>전화번호</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.id }}</td>
+                <td>{{ row.account_id }}</td>
+                <td>{{ row.password_hash }}</td>
+                <td>{{ row.student_name}}</td>
+                <td>{{ row.student_num}}</td>
+                <td>{{ row.phone_num }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
