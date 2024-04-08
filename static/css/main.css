@@ -5,6 +5,10 @@ body {
     position: relative; 
 }
 
+.header .logo{
+    margin-top: 5px;
+}
+
 .header {
     height: 100px;
     background-color: white;
@@ -26,7 +30,7 @@ body {
 }
 
 .hero {
-    background-image: url('background.jpg'); 
+    background-image: url('/static/img/summer_ssu.jpg'); 
     background-size: cover; 
     background-position: center bottom; 
     color: white;
@@ -58,8 +62,8 @@ body {
 }
 
 .btn {
-    background-color: #ffffff; 
-    color: #009bcb; 
+    background-color: #009bcb; 
+    color: #fff; 
     padding: 15px; 
     border: none; 
     border-radius: 10px; 
@@ -73,7 +77,7 @@ body {
 }
 
 .btn:hover {
-    background-color: #009bcb; 
+    background-color: #006694; 
     color: #ffffff; 
     transform: translateY(-30px); 
     height: 230px; 
