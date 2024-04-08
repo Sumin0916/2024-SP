@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 <body>
     <div class="banner">
         <div class="navbar">
-            <img src="../images/ssu.png" class="logo">
+            <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">My page</a></li>
@@ -22,8 +22,8 @@
         </div>
 
         <div class="content">
-            <h1>WELCOME</h1>
-            <p>Reserve Your Facility</p>
+            <h1>환영합니다!</h1>
+            <p>세미나실을 예약하세요</p>
             <div>
                 <button type="button" onclick="location.href='login_account.html'">LOGIN</button>
             </div>
