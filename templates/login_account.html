@@ -12,7 +12,7 @@
     <body>
         <div class="container" id="container">
             <div class="form-container sign-up">
-                <form>
+                <form method="POST" action="/register">
                     <h1>Register</h1>
                     <div class="social-icon">
                         <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
@@ -20,15 +20,17 @@
                         <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
                     </div>
                     <span>새로운 계정 생성하기</span>
-                    <input type="text" placeholder="name">
-                    <input type="text" placeholder="id">
-                    <input type="password" placeholder="password">
+                    <input type="text" name="regi_name" placeholder="name">
+                    <input type="text" name="regi_sn" placeholder="student_number">
+                    <input type="text" name="regi_pn" placeholder="phone number">
+                    <input type="text" name="regi_id" placeholder="id">
+                    <input type="password" name="regi_pw" placeholder="password">
                     <button>Submit</button>
                 </form>
             </div>
 
             <div class="form-container sign-in">
-                <form>
+                <form method="POST"> <!-- 수정된 부분 -->
                     <h1>Login</h1>
                     <div class="social-icon">
                         <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
@@ -36,12 +38,13 @@
                         <a href="#" class="icon"><i class="fa-solid fa-comment"></i></a>
                     </div>
                     <span>계정으로 로그인하기</span>
-                    <input type="text" placeholder="id">
-                    <input type="password" placeholder="password">
+                    <input type="text" name="login_id" placeholder="id"> <!-- 수정된 부분 -->
+                    <input type="password" name="login_pw" placeholder="password"> <!-- 수정된 부분 -->
                     <a href="#">비밀번호를 잊으셨나요?</a>
-                    <button>Login</button>
+                    <button type="submit">Login</button> <!-- 수정된 부분 -->
                 </form>
             </div>
+            
 
             <div class="toggle-container">
                 <div class="toggle">

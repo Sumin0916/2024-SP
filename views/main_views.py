@@ -6,11 +6,6 @@ bp=Blueprint('main', __name__, url_prefix='/')
 db = Database()
 
 
-@bp.route('/hello')
-def hello_pybo():
-    return 'Hello, Pybo!'
-
-
 @bp.route('/')
 def main():
     return render_template('main.html')
@@ -40,26 +35,22 @@ def home():
     return render_template('home.html')
 
 
-@bp.route('/register', methods=['GET', 'POST'])
+@bp.route('/register', methods=['POST'])
 def register():
-    if request.method == 'POST':
-        recieved_data = request.form
-        student_num = recieved_data['regi_sn']
-        phone_num = recieved_data['regi_pn']
-        password = recieved_data['regi_pw']
-        account_id = recieved_data['regi_id']
-
-        hashed_password = hashlib.sha256(password.encode()).hexdigest()
-
-        sql_query = """
-        INSERT INTO user (account_id, student_name, password_hash, student_num, phone_num)
-        VALUES (%s, %s, %s, %s, %s)
-        """
-
-        db.executeOne(sql_query, (account_id, "기본이름", hashed_password, student_num, phone_num))
-        db.commit()
-        return "회원가입 완료"
-    return render_template('register.html')
+    recieved_data = request.form
+    student_num = recieved_data['regi_sn']
+    student_name = recieved_data['regi_name']
+    phone_num = recieved_data['regi_pn']
+    password = recieved_data['regi_pw']
+    account_id = recieved_data['regi_id']
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    sql_query = """
+    INSERT INTO user (account_id, student_name, password_hash, student_num, phone_num)
+    VALUES (%s, %s, %s, %s, %s)
+    """
+    db.executeOne(sql_query, (account_id, student_name, hashed_password, student_num, phone_num))
+    db.commit()
+    return "회원가입 완료"
 
 
 @bp.route('/admin') # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지
