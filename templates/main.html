@@ -6,24 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hero Section</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
     <div class="header">
         <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
-    </div>
-    <div class="hero">
-        <div class="hero-overlay">
-            <h1 class="hero-text">역사로 미래를 여는 대학<br>숭실대학교 AI융합학부</h1>
-            <button class="login-btn"onclick="location.href='/login_account'">로그인</button>
+        
+        <div class="navbar" id="navbar">
+            <div class="dropdown">
+                <button class="dropbtn">시설 안내</button>
+                <button class="dropbtn">게시판</button>
+                <button class="dropbtn">강의실 예약</button>
+                <button class="dropbtn">내 예약</button>
+                <button class="dropbtn">내 정보</button>
+                <div class="dropdown-content">
+                    <div class="row">
+                        <div class="column">
+                            <p3><br>이름: 김땡땡<br><br>학과: AI융합학부<br><br>학번: 20241234</p3>
+                        </div>
+                        <div class="column">
+                            <a href="#">예약 확인</a>
+                            <a href="#">예약 취소</a>
+                            <a href="#">예약 변경</a>
+                        </div>
+                        <div class="column">
+                            <a href="#">  강의실 예약</a>
+                        </div>
+                        <div class="column">
+                            <a href="#">공지사항</a>
+                            <a href="#">비품 게시판</a>
+                        </div>
+                        <div class="column">
+                            <a href="#">시설 안내</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="btn">시설 안내</button>
-        <button class="btn">예약하기</button>
-        <button class="btn">공지사항</button>
-        <button class="btn">비품 게시판</button>
-        <button class="btn">내 예약</button>
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+              <a href="#">시설 안내</a>
+              <a href="#">게시판</a>
+              <a href="#">강의실 예약</a>
+              <a href="#">내 예약</a>
+              <a href="#">내 정보</a>
+            </div>
+          </div>
+
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="openbtn">&#9776;</span>
     </div>
+    
+        <div class="hero">
+            <div class="hero-overlay">
+                <h1 class="hero-text">역사로 미래를 여는 대학<br>숭실대학교 AI융합학부</h1>
+                <button class="login-btn"onclick="location.href='/login_account'">로그인</button>
+            </div>
+            <button class="btn">시설 안내</button>
+            <button class="btn">예약하기</button>
+            <button class="btn">공지사항</button>
+            <button class="btn">비품 게시판</button>
+            <button class="btn">내 예약</button>
+        </div>
 
     <div style="margin-top: 200px;"></div>
 
@@ -66,6 +113,18 @@
         <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
     </div>
 
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+          }
+          
+          function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+          }
+        
+    </script>
+    
 </body>
+
 
 </html>
