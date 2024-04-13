@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from dbModule import Database
 import datetime, json, hashlib
 
-bp=Blueprint('main', __name__, url_prefix='/')
+bp = Blueprint('main', __name__, url_prefix='/')
 db = Database()
 
 
@@ -17,11 +17,8 @@ def login_account():
         data = request.form
         login_id = data['login_id']
         login_pw = data['login_pw']
-        hashed_login_pw = hashlib.sha256(login_pw.encode()).hexdigest()
 
-        sql = "SELECT * FROM user WHERE account_id=%s AND password_hash=%s"
-        user_info = db.executeOne(sql, (login_id, hashed_login_pw))
-
+        user_info = db.searchAccount(login_id, login_pw)
         if user_info:
             return f"로그인 완료. 사용자 정보: {user_info}"
         else:
@@ -43,14 +40,39 @@ def register():
     phone_num = recieved_data['regi_pn']
     password = recieved_data['regi_pw']
     account_id = recieved_data['regi_id']
-    hashed_password = hashlib.sha256(password.encode()).hexdigest()
-    sql_query = """
-    INSERT INTO user (account_id, student_name, password_hash, student_num, phone_num)
-    VALUES (%s, %s, %s, %s, %s)
-    """
-    db.executeOne(sql_query, (account_id, student_name, hashed_password, student_num, phone_num))
-    db.commit()
+
+    db.addStudent(account_id, student_name, password, student_num, phone_num)
+
     return "회원가입 완료"
+
+
+@bp.route('/equipments')
+def equipments():
+    sql = "SELECT * FROM equipments"
+    equipments = db.executeAll(sql)
+    return render_template('equipments.html', equipments=equipments)
+
+
+@bp.route('/add_equipment', methods=['POST'])
+def add_equipment():
+    name = request.form['name']
+    category = request.form['category']
+    description = request.form['description']
+    quantity = request.form['quantity']
+    purchase_date = request.form['purchase_date']
+    location = request.form['location']
+
+    db.addEquipment(name, category, description, quantity, purchase_date, location)
+    return redirect(url_for('main.equipments'))
+
+
+@bp.route('/delete_equipment', methods=['POST'])
+def delete_equipment():
+    if request.method == 'POST':
+        equipment_id = request.form['id'] 
+        db.deleteEquipment(equipment_id)
+        
+        return redirect(url_for('main.equipments'))
 
 
 @bp.route('/admin') # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지

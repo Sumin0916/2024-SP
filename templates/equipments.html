@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>비품 관리 시스템</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+    <h1>비품 등록</h1>
+    <form action="/add_equipment" method="POST">
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="category">카테고리:</label>
+        <input type="text" id="category" name="category"><br><br>
+        <label for="description">설명:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+        <label for="quantity">수량:</label>
+        <input type="number" id="quantity" name="quantity"><br><br>
+        <label for="purchase_date">구매일:</label>
+        <input type="date" id="purchase_date" name="purchase_date"><br><br>
+        <label for="location">위치:</label>
+        <input type="text" id="location" name="location"><br><br>
+        <button type="submit">등록</button>
+    </form>
+
+    <h1>비품 목록</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>이름</th>
+                <th>카테고리</th>
+                <th>설명</th>
+                <th>수량</th>
+                <th>구매일</th>
+                <th>위치</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for equipment in equipments %}
+            <tr>
+                <td>{{ equipment.id }}</td>
+                <td>{{ equipment.name }}</td>
+                <td>{{ equipment.category }}</td>
+                <td>{{ equipment.description }}</td>
+                <td>{{ equipment.quantity }}</td>
+                <td>{{ equipment.purchase_date }}</td>
+                <td>{{ equipment.location }}</td>
+                <td>
+                    <form action="/delete_equipment" method="POST">
+                        <input type="hidden" name="id" value="{{ equipment.id }}">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
