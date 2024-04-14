@@ -81,3 +81,7 @@ def admin():
     users = db.executeAll(sql)
     
     return render_template('admin.html', data=users)
+
+@bp.route('/notice_board')
+def notice_board():
+    return render_template('notice_board.html')
