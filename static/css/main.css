@@ -29,172 +29,106 @@ body {
     margin-top: 15px;
 }
 
-.navbar {
-    overflow: hidden;
-    background-color: white;
-    color: #006694;
-    font-family: Arial;
-}
-  
-.navbar a {
-    float: left;
-    font-size: 16px;
-    background-color: white;
-    color: #006694;
-    text-align: center;
-    padding: 14px 80px;
-    text-decoration: none;
-    width: 100%;
-}
-  
-.dropdown {
-    float: right;
-    overflow: hidden;
-}
-  
-  
-.dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: #006694;
-    padding: 17px 80px;
-    background-color: inherit;
-    font: inherit; 
-    margin: 0; 
-}
-  
-.dropdown-content {
-    float: right;
-    display: none;
-    position: absolute;
-    background-color: #60c1c3;
-    width: 100%;
-    right: 0;
-    z-index: 1;
-    margin-top: 1px;
-    box-shadow: 0px 2px 4px #006694;
+html {box-sizing: border-box;}
+*, *:before, *:after {box-sizing: inherit;  }
+
+
+body {
+
     color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+  line-height: 2;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
-  
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-  
-.column {
-    float: right;
-    width: 14%;
+
+a {
+    text-decoration: none;
     padding: 10px;
-    background-color: #60c1c3;
-    height: 250px;
-    right: 0;
 }
+
+h2 {
+    font-size: 15px;
+      font-weight: 600;
+    margin-bottom: 30px;
+      margin-top: 20px;
+      text-align: left;
+  }
+  .container {
+    margin: auto;
+    width: 1140px;
+  }
+  .ul-reset {
+    padding-left: 0;
+     margin-top: 0;
+     margin-bottom: 0;
+    list-style: none;
+  }
   
-.column a {
-    float: left;
-    color: white;
-    padding: 16px 14px 16px 0;
-    text-decoration: none;
-    display: block;
-    text-align: middle;
-    background-color: #60c1c3;
-}
-  
-.column a:hover {
-    color: #006694;
-    background-color: white;
-}
-  
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.openbtn  {
-        display: none; 
-    }
-
-.closebtn  {
-        display: none; 
-}
-
-.overlay  {
-        display: none; 
-}
-.overlay-content  {
-        display: none; 
-}
-
-@media screen and (max-height: 768px) {
-    .navbar a {
-        display: none; 
-    }
-
-    .dropbtn a {
-        display: none; 
-    }
-
-    .dropdown  {
-        display: none; 
-    }
-    .overlay {
-        display: block;
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      right: 0;
-      background-color: rgb(0, 48, 88);
-      background-color: rgba(0,48,88, 0.9);
-      overflow-x: hidden;
-      transition: 0.5s;
-    }
-    
-    .overlay-content {
-        display: block;
+  nav {
+    background: white;
+    font-size: 0;
+    position: relative;
+  }
+  nav > ul > li {
+    display: inline-block;
+      font-size: 16px;
+      padding: 0;
       position: relative;
-      top: 25%;
-      width: 100%;
-      text-align: center;
-      margin-top: 30px;
-    }
-    
-    .overlay a {
-      padding: 8px;
-      text-decoration: none;
-      font-size: 36px;
-      color: #818181;
+      width: 20%
+  }
+  nav > ul > li:first-child {padding-left: 0;}
+  nav > ul > li:last-child {padding-right: 0;}
+  nav > ul > li > a {
+    color: #006694;
       display: block;
-      transition: 0.3s;
-    }
-    
-    .overlay a:hover, .overlay a:focus {
-      color: #f1f1f1;
-    }
-    
-    .overlay .closebtn {
+      position: relative;
+      padding: 30px 0;
+      border-bottom: 3px solid transparent;
+  }
+  nav > ul > li:hover > a {
+    color: #69aae0; 
+      border-bottom: 3px solid #69aae0;
+  }
+  
+  .mega-menu {
+    background: #60c1c3;
+      display: none;
+      left: 0;
       position: absolute;
-      top: 30px;
-      right: 30px;
-      font-size: 60px;
-    }
-      .overlay a {font-size: 20px}
-      .overlay .closebtn {
-      font-size: 40px;
-      top: 20px;
-      right: 24px;
-      }
-      .openbtn {
-        display: block;
-        position: absolute;
-        top: 30px; 
-        right: 30px; 
-        cursor: pointer;
-        color: #006694;
-    }
-    }
+      text-align: center;
+      width: 100%;
+  }
+  .mega-menu h3 {color: white;}
+  .mega-menu ul {
+    float: left;
+      margin-bottom: 20px;
+      margin-right: 10px;
+      margin-left: 10px;
+      width: 18%;
+  }
+  .mega-menu ul:last-child {margin-right: 0;}
+  .mega-menu a {
+    border-bottom: 1px solid #ddd;
+      color: white;
+      display: block;
+      padding: 10px 0;
+  }
+  .mega-menu a:hover {color: #2d6a91;}
+  
+  .droppable {position: static;}
+ 
+  .droppable:hover .mega-menu {display: block;}
+  
+  .cf:before,
+  .cf:after {
+    content: " ";
+     display: table; 
+  }
+  .cf:after {clear: both;}
+
 .hero {
     background-image: url('/static/img/summer_ssu.jpg'); 
     background-size: cover; 
