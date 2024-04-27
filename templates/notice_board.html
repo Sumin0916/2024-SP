@@ -3,6 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Notice</title>
+    <style>
+        main {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .search {
+            display: flex;
+            justify-content: right;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            font-size: 20px;
+            border-collapse: collapse;
+        }
+
+        table tr {
+            height: 50px;
+        }
+
+        table tr:nth-child(1) {
+            background-color: #eee;
+        }
+
+        table tr th, table tr td {
+            text-align: center;
+            font-size: 14px;
+            border: 1px solid #ccc;
+        }
+
+        table tr td:nth-child(2) {
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        .page-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .page-btn span {
+            margin-right: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .page-btn span:last-child {
+            margin-right: 0;
+        }
+
+        .num {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 14px;
+            display: inline-block;
+            color: black;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #ccc;
+            }
+
+        .active {
+            background-color: rgb(216, 216, 247);
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <header>
