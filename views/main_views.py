@@ -74,18 +74,21 @@ def delete_equipment():
         
         return redirect(url_for('main.equipments'))
 
-@bp.route('/notice_board', methods=['POST'])
+
+@bp.route('/notice_board')
 def notice_board():
     return render_template('notice_board.html')
 
 
-@bp.route('/add_board', methods=['POST'])
-def add_board():
-    pass
+@bp.route('/write_board')
+def write_board():
+    return render_template('write_board.html')
+
 
 @bp.route('/del_board', methods=['POST'])
 def del_board():
     pass
+
 
 @bp.route('/admin') # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지
 def admin():
