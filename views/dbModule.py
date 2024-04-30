@@ -57,10 +57,16 @@ class Database():
     def execute_board(self, query, args={}):
         self.cursor.execute(query, args)
         data_list = self.cursor.fetchall()
-        # print(data_list[0])
-        # print(data_list[1])
-        # print(data_list[2])
         return data_list
+
+    def newWrite(self, title="", writer="", content=""):
+        sql = "INSERT INTO board2 (num, title, writer, content, views) VALUES (11, %s, %s, %s, 0)"
+        values = (title, writer, content)
+        k = self.cursor.execute(sql, values)
+        self.commit()
+        return k
+
+    
 
     def commit(self):
         self.db.commit()

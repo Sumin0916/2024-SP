@@ -82,11 +82,23 @@ def notice_board():
     return render_template('notice_board.html', data_list=data_list)
 
 
-# @bp.route('/write_board')
-# def write_board():
-#     return render_template('write_board.html')
-#
-#
+@bp.route('/write')
+def write():
+    return render_template('write_board.html')
+
+
+@bp.route('/write_action', methods=['POST'])
+def write_action():
+    title = request.form['title']
+    writer = request.form['writer']
+    content = request.form['content']
+    print(title)
+    print(writer)
+    print(content)
+    db.newWrite(title, writer, content)
+    return redirect(url_for('main.notice_board'))
+
+
 # @bp.route('/del_board', methods=['POST'])
 # def del_board():
 #     pass
