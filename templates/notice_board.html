@@ -88,31 +88,26 @@
         </form>
     </div>
     <table>
-        <tr>
-            <th>구분</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>조회수</th>
-        </tr>
-
-        <tr>
-            <td>공지</td>
-            <td>공지3 예시입니다.</td>
-            <td>2024.04.15</td>
-            <td>50</td>
-        </tr>
-        <tr>
-            <td>공지</td>
-            <td>공지2 예시입니다.</td>
-            <td>2024.04.14</td>
-            <td>1609</td>
-        </tr>
-        <tr>
-            <td>공지</td>
-            <td>공지1 예시입니다.</td>
-            <td>2024.04.14</td>
-            <td>15607</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>번호</th>
+<!--            <th>구분</th>-->
+                <th>제목</th>
+                <th>글쓴이</th>
+<!--            <th>작성일</th>-->
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data_list %}
+            <tr>
+                <td>{{ i.num }}</td>
+                <td>{{ i.title }}</td>
+                <td>{{ i.writer }}</td>
+                <td>{{ i.views }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
     <div class="page-btn">
         <span class="num active">1</span>

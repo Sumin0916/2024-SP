@@ -77,17 +77,19 @@ def delete_equipment():
 
 @bp.route('/notice_board')
 def notice_board():
-    return render_template('notice_board.html')
+    sql = "SELECT * FROM board2"
+    data_list = db.execute_board(sql)
+    return render_template('notice_board.html', data_list=data_list)
 
 
-@bp.route('/write_board')
-def write_board():
-    return render_template('write_board.html')
-
-
-@bp.route('/del_board', methods=['POST'])
-def del_board():
-    pass
+# @bp.route('/write_board')
+# def write_board():
+#     return render_template('write_board.html')
+#
+#
+# @bp.route('/del_board', methods=['POST'])
+# def del_board():
+#     pass
 
 
 @bp.route('/admin') # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지

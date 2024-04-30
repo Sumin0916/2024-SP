@@ -54,5 +54,13 @@ class Database():
         self.commit()
         return result_row
 
+    def execute_board(self, query, args={}):
+        self.cursor.execute(query, args)
+        data_list = self.cursor.fetchall()
+        # print(data_list[0])
+        # print(data_list[1])
+        # print(data_list[2])
+        return data_list
+
     def commit(self):
         self.db.commit()
