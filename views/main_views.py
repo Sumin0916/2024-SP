@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from dbModule import Database
-import datetime, json, hashlib
+# from WebStockServer.DBmodels import ArticleRepository
+# import datetime, json, hashlib
+# from time import time
 
 bp = Blueprint('main', __name__, url_prefix='/')
 db = Database()
@@ -92,16 +94,31 @@ def write_action():
     title = request.form['title']
     writer = request.form['writer']
     content = request.form['content']
-    print(title)
-    print(writer)
-    print(content)
-    db.newWrite(title, writer, content)
+    theme = '-'
+    db.newWrite(title, writer, content, theme)
     return redirect(url_for('main.notice_board'))
 
 
-# @bp.route('/del_board', methods=['POST'])
-# def del_board():
-#     pass
+@bp.route('/notice_board/<float:title>/')
+def view(title):
+    sql = "SELECT * FROM board2 WHERE title = %s"
+    k = db.views(sql, title)
+    return render_template('view_board.html', article=k)
+
+
+@bp.route('/del_board', methods=['POST'])
+def del_board():
+    pass
+
+
+# @bp.app_template_filter("formatdatetime")
+# def format_datetime(value):
+#     if value is None:
+#         return ""
+#     now_timestamp = time.time()
+#     offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
+#     value = datetime.fromtimestamp(int(value / 1000)) + offset
+#     return value.strftime('%Y-%m-%d %H:%M:%S')
 
 
 @bp.route('/admin') # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지

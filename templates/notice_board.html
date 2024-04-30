@@ -93,18 +93,18 @@
         <thead>
             <tr>
                 <th>번호</th>
-<!--            <th>구분</th>-->
+                <th>구분</th>
                 <th>제목</th>
                 <th>글쓴이</th>
-<!--            <th>작성일</th>-->
                 <th>조회수</th>
             </tr>
         </thead>
         <tbody>
             {% for i in data_list %}
             <tr>
-                <td>{{ i.num }}</td>
-                <td>{{ i.title }}</td>
+                <td>{{ loop.index }}</td>
+                <td>{{ i.theme }}</td>
+                <td><a href="/notice_board/{{ i.title }}/">{{ i.title }}</a></td>
                 <td>{{ i.writer }}</td>
                 <td>{{ i.views }}</td>
             </tr>

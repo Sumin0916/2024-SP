@@ -50,7 +50,7 @@ class Database():
 
     def deleteEquipment(self, equipment_id):
         sql = "DELETE FROM equipments WHERE id = %s"
-        result_row = self.executeOne(sql, (equipment_id))
+        result_row = self.executeOne(sql, equipment_id)
         self.commit()
         return result_row
 
@@ -59,14 +59,23 @@ class Database():
         data_list = self.cursor.fetchall()
         return data_list
 
-    def newWrite(self, title="", writer="", content=""):
-        sql = "INSERT INTO board2 (num, title, writer, content, views) VALUES (11, %s, %s, %s, 0)"
-        values = (title, writer, content)
+    def newWrite(self, title="", writer="", content="", theme=""):
+        sql = "INSERT INTO board2 (num, title, writer, content, views, theme) VALUES (11, %s, %s, %s, 0, %s)"
+        values = (title, writer, content, theme)
         k = self.cursor.execute(sql, values)
         self.commit()
         return k
 
-    
+    def delWrite(self, write_id):
+        sql = "DELETE FROM board2 WHERE id = %s"
+        d = self.executeOne(sql, write_id)
+        self.commit()
+        return d
+
+    def views(self, query, title):
+        d = self.executeOne(query, title)
+        self.commit()
+        return d
 
     def commit(self):
         self.db.commit()
