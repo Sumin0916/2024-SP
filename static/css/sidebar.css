@@ -1,0 +1,63 @@
+/*사이드바*/
+
+.aside {
+  color: #fff;
+  width: 250px;
+  padding-left: 20px;
+  height: 100vh;
+  background: linear-gradient(30deg , #006694, #60c1c3);
+  border-top-right-radius: 80px;
+}
+
+.aside a {
+  font-size: 16px;
+  color: #fff;
+  display: block;
+  padding: 12px;
+  padding-left: 30px;
+  text-decoration: none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+.aside a:hover {
+  color: #006694;
+  background: #fff;
+  outline: none;
+  position: relative;
+  background-color: #fff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.aside a:hover::after {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  bottom: 100%;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-bottom-right-radius: 18px;
+  box-shadow: 0 20px 0 0 #fff;
+}
+
+.aside a:hover::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  top: 38px;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -20px 0 0 #fff;
+}
+
+.aside p {
+  margin: 0;
+  padding: 60px 0;
+  font-size: 24px;
+}
+
+
+/*사이드바*/
