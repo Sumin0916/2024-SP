@@ -33,6 +33,9 @@ def login_account():
 def home():
     return render_template('home.html')
 
+@bp.route('/facility')
+def facility():
+    return render_template('facility.html')
 
 @bp.route('/register', methods=['POST'])
 def register():
