@@ -1,253 +1,125 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    position: relative; 
-}
 
-.header .logo{
-    margin-top: 5px;
-}
-
-.header {
-    height: 100px;
-    background-color: white;
-    position: fixed; 
-    top: 0; 
-    left: 0;
-    right: 0; 
-    z-index: 999; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    border-bottom: 1px solid #006694;
-}
-
-.header img {
-    width: 300px; 
-    margin-top: 15px;
-}
-
-html {box-sizing: border-box;}
-*, *:before, *:after {box-sizing: inherit;  }
-
-
-body {
-
-    color: white;
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
-  line-height: 2;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-a {
-    text-decoration: none;
-    padding: 10px;
-}
-
-h2 {
-    font-size: 15px;
-      font-weight: 600;
-    margin-bottom: 30px;
-      margin-top: 20px;
-      text-align: left;
-  }
-  .container {
-    margin: auto;
-    width: 1140px;
-  }
-  .ul-reset {
-    padding-left: 0;
-     margin-top: 0;
-     margin-bottom: 0;
-    list-style: none;
-  }
-  
-  nav {
-    background: white;
-    font-size: 0;
-    position: relative;
-  }
-  nav > ul > li {
-    display: inline-block;
-      font-size: 16px;
-      padding: 0;
-      position: relative;
-      width: 20%
-  }
-  nav > ul > li:first-child {padding-left: 0;}
-  nav > ul > li:last-child {padding-right: 0;}
-  nav > ul > li > a {
-    color: #006694;
-      display: block;
-      position: relative;
-      padding: 30px 0;
-      border-bottom: 3px solid transparent;
-  }
-  nav > ul > li:hover > a {
-    color: #69aae0; 
-      border-bottom: 3px solid #69aae0;
-  }
-  
-  .mega-menu {
-    background: #60c1c3;
-      display: none;
-      left: 0;
-      position: absolute;
-      text-align: center;
-      width: 100%;
-  }
-  .mega-menu h3 {color: white;}
-  .mega-menu ul {
-    float: left;
-      margin-bottom: 20px;
-      margin-right: 10px;
-      margin-left: 10px;
-      width: 18%;
-  }
-  .mega-menu ul:last-child {margin-right: 0;}
-  .mega-menu a {
-    border-bottom: 1px solid #ddd;
-      color: white;
-      display: block;
-      padding: 10px 0;
-  }
-  .mega-menu a:hover {color: #2d6a91;}
-  
-  .droppable {position: static;}
- 
-  .droppable:hover .mega-menu {display: block;}
-  
-  .cf:before,
-  .cf:after {
-    content: " ";
-     display: table; 
-  }
-  .cf:after {clear: both;}
 
 .hero {
-    background-image: url('/static/img/summer_ssu.jpg'); 
-    background-size: cover; 
-    background-position: center bottom; 
-    color: white;
-    display: flex;
-    align-items: flex-end; 
-    justify-content: center; 
-    padding: 20px;
-    height: calc(100vh - 100px); 
-    position: relative; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    text-align: center; 
-    position: relative;
+  background-image: url('/static/img/summer_ssu.jpg'); 
+  background-size: cover; 
+  background-position: center bottom; 
+  color: white;
+  display: flex;
+  align-items: flex-end; 
+  justify-content: center; 
+  padding: 20px;
+  height: calc(100vh - 100px); 
+  position: relative; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  text-align: center; 
+  position: relative;
 }
 
 .hero-overlay {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 92, 168, 0.5); 
-    padding: 20px;
-    border-radius: 10px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 92, 168, 0.5); 
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .hero-text {
-    color: white;
-    font-size: 18px;
-    text-align: center;
+  color: white;
+  font-size: 18px;
+  text-align: center;
 }
 
 .btn {
-    background-color: #009bcb; 
-    color: #fff; 
-    padding: 15px; 
-    border: none; 
-    border-radius: 10px; 
-    font-size: 18px; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
-    width: 200px; 
-    height: 200px; 
-    margin: 0px; 
-    box-shadow: 0 10px 20px rgba(51, 84, 202, 0.1); 
+  background-color: #009bcb; 
+  color: #fff; 
+  padding: 15px; 
+  border: none; 
+  border-radius: 10px; 
+  font-size: 18px; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  width: 200px; 
+  height: 200px; 
+  margin: 0px; 
+  box-shadow: 0 10px 20px rgba(51, 84, 202, 0.1); 
 }
 
 .btn:hover {
-    background-color: #006694; 
-    color: #ffffff; 
-    transform: translateY(-30px); 
-    height: 230px; 
+  background-color: #006694; 
+  color: #ffffff; 
+  transform: translateY(-30px); 
+  height: 230px; 
 }
 
 .login-btn {
-    background-color: #ffffff; 
-    color: black; 
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 20px; 
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.3s ease; 
+  background-color: #ffffff; 
+  color: black; 
+  padding: 10px 20px; 
+  border: none; 
+  border-radius: 20px; 
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease; 
 }
 
 .login-btn:hover {
-    background-color: #009bcb; 
-    color: #ffffff;
+  background-color: #009bcb; 
+  color: #ffffff;
 }
 
 .card-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    flex-wrap: wrap; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-wrap: wrap; 
 }
 
 .card {
-    width: 300px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+  width: 300px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
 .card img {
-    width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .card-content {
-    padding: 20px;
+  padding: 20px;
 }
 
 .card-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #009bcb;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #009bcb;
 }
 
 .card-description {
-    font-size: 16px;
-    color: #009bcb;
+  font-size: 16px;
+  color: #009bcb;
 }
 
 .card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .footer {
-    background-color: #60c1c3;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    bottom: 0;
-    width: 100%;
+  background-color: #60c1c3;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
 }
+
