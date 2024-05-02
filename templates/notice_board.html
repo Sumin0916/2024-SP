@@ -2,83 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/notice_board.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
     <title>Notice</title>
-    <style>
-        main {
-            width: 1200px;
-            margin: 0 auto;
-        }
-
-        .search {
-            display: flex;
-            justify-content: right;
-            margin-bottom: 20px;
-        }
-
-        table {
-            width: 100%;
-            font-size: 20px;
-            border-collapse: collapse;
-        }
-
-        table tr {
-            height: 50px;
-        }
-
-        table tr:nth-child(1) {
-            background-color: #eee;
-        }
-
-        table tr th, table tr td {
-            text-align: center;
-            font-size: 14px;
-            border: 1px solid #ccc;
-        }
-
-        table tr td:nth-child(2) {
-            text-align: left;
-            padding-left: 10px;
-        }
-
-        .page-btn {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .page-btn span {
-            margin-right: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .page-btn span:last-child {
-            margin-right: 0;
-        }
-
-        .num {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 14px;
-            display: inline-block;
-            color: black;
-            text-align: center;
-            line-height: 30px;
-            border: 1px solid #ccc;
-            }
-
-        .active {
-            background-color: rgb(216, 216, 247);
-            color: white;
-        }
-    </style>
 </head>
 <body>
-<header>
+    <div class="header">
+        <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+            
+        <nav>
+          <ul class="container ul-reset">
+            {% include 'navbar.html' %}
+          </ul>
+        </nav>
+      </div>
     <h1>자유게시판</h1>
     <p>공지사항을 확인해 주세요.</p>
-</header>
+
+    <div class="container1">
+        <div class="aside">
+            <h3> 게시판 </h3>
+            <a href="javascript:void(0)">
+            공지사항
+            </a>
+            <a href="javascript:void(0)">
+                비품게시판
+                </a>
+    </div>
+
+    <div class="main-content">
+        <div class="top_bg">
+          <h3>숭실대 AI융합학부</h3>
+          <p>공지사항</p>
+        </div>
+
+
 <main>
     <div class="search">
         <form action="">
