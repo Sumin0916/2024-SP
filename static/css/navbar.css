@@ -1,0 +1,160 @@
+.header .logo {
+    margin-top: 5px;
+  }
+  
+  .header {
+    height: 100px;
+    background-color: white;
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    right: 0; 
+    z-index: 999; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #006694;
+  }
+  
+  .header img {
+    width: 300px; 
+    margin-top: 15px;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    color: white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    line-height: 2;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  
+  a {
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+  h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .container {
+    margin: auto;
+    width: 1140px;
+  }
+  
+  .ul-reset {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+  
+  nav {
+    background: white;
+    font-size: 0;
+    position: relative;
+  }
+  
+  nav > ul > li {
+    display: inline-block;
+    font-size: 16px;
+    padding: 0;
+    position: relative;
+    width: 20%
+  }
+  
+  nav > ul > li:first-child {
+    padding-left: 0;
+  }
+  
+  nav > ul > li:last-child {
+    padding-right: 0;
+  }
+  
+  nav > ul > li > a {
+    color: #006694;
+    display: block;
+    position: relative;
+    padding: 30px 0;
+    border-bottom: 3px solid transparent;
+  }
+  
+  nav > ul > li:hover > a {
+    color: #69aae0; 
+    border-bottom: 3px solid #69aae0;
+  }
+  
+  .mega-menu {
+    background: #60c1c3;
+    display: none;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .mega-menu h3 {
+    color: white;
+  }
+  
+  .mega-menu ul {
+    float: left;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 18%;
+  }
+  
+  .mega-menu ul:last-child {
+    margin-right: 0;
+  }
+  
+  .mega-menu a {
+    border-bottom: 1px solid #ddd;
+    color: white;
+    display: block;
+    padding: 10px 0;
+  }
+  
+  .mega-menu a:hover {
+    color: #2d6a91;
+  }
+  
+  .droppable {
+    position: static;
+  }
+  
+  .droppable:hover .mega-menu {
+    display: block;
+  }
+  
+  .cf:before,
+  .cf:after {
+    content: " ";
+    display: table; 
+  }
+  
+  .cf:after {
+    clear: both;
+  }
+  
+
+  
