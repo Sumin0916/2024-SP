@@ -1,73 +1,106 @@
-/* notice_board.css */
-
 main {
-    width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+    align-items: center; 
 }
 
+/* search */
 .search {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end; 
+    margin-bottom: 20px;
+    margin-left: 200px;
+}
+
+.search input[type="text"] {
+    padding: 8px; 
+    width: 400px; 
+    border: 2px solid #003366; 
+    border-radius: 4px; 
+}
+
+.search button {
+    padding: 8px 16px; 
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 4px; 
+    cursor: pointer;
+}
+
+.write-btn {
+    padding: 8px 16px;
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 200px;
+}
+
+/*table*/
+table {
+    width: 80%;
+    border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-table {
-    width: 100%;
-    font-size: 20px;
-    border-collapse: collapse;
-}
-
-table tr {
-    height: 50px;
-}
-
-table tr:nth-child(1) {
-    background-color: #eee;
-}
-
-table tr th, table tr td {
-    text-align: center;
-    font-size: 14px;
-    border: 1px solid #ccc;
-}
-
-table tr td:nth-child(2) {
+th, td {
+    padding: 8px;
     text-align: left;
-    padding-left: 10px;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
 }
+
+td {
+   color: #003366;
+}
+
+th {
+    background-color: #003366;
+    color: #fff;
+}
+
+td a {
+    text-decoration: none;
+    color: inherit;
+}
+
+td a:hover {
+    text-decoration: underline; 
+    cursor: pointer;
+}
+
+/* page button */
 
 .page-btn {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.page-btn span {
-    margin-right: 5px;
+.page-btn .num {
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #f2f2f2;
     cursor: pointer;
-    margin-top: 10px;
 }
 
-.page-btn span:last-child {
-    margin-right: 0;
+.page-btn .num.active {
+    background-color: #003366;
+    color: #fff;
 }
 
-.num {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    font-size: 14px;
-    display: inline-block;
-    color: black;
-    text-align: center;
-    line-height: 30px;
-    border: 1px solid #ccc;
-    }
+/*footer*/
 
-.active {
-    background-color: rgb(216, 216, 247);
+.footer {
+    background-color: #60c1c3;
     color: white;
-}
-
-
- 
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+  }
