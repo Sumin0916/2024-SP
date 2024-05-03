@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .article-info {
+            margin-bottom: 20px;
+        }
+        .article-info strong {
+            font-weight: bold;
+        }
+        .article-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .article-content {
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ article.title }}</h1>
+        <div class="article-info">
+            <div class="article-title">
+                <p><strong>제목:</strong> {{ article.title }}</p>
+            </div>
+            <div class="article-other">
+                <p><strong>작성자 ID:</strong> {{ article.writer }}</p>
+                <p><strong>최근 수정 일자:</strong> {{ article.updatedAt }}</p>
+                <p><strong>조회수:</strong> {{ article.views }}</p>
+                <p><strong>분류:</strong> {{ article.theme }}</p>
+            </div>
+        </div>
+        <div class="article-content">
+            <p><strong>내용:</strong> {{ article.content }}</p>
+        </div>
+    </div>
+</body>
+</html>
