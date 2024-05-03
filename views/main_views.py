@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, abort
 from dbModule import Database
 # from WebStockServer.DBmodels import ArticleRepository
 # import datetime, json, hashlib
@@ -82,35 +82,40 @@ def delete_equipment():
 
 @bp.route('/notice_board')
 def notice_board():
-    sql = "SELECT * FROM board2"
+    sql = "SELECT * FROM board ORDER BY num DESC"
     data_list = db.execute_board(sql)
     return render_template('notice_board.html', data_list=data_list)
 
 
 @bp.route('/write')
 def write():
-    return render_template('write_board.html')
+    return render_template('write_post.html')
 
 
-@bp.route('/write_action', methods=['POST'])
-def write_action():
+@bp.route('/write_post', methods=['POST'])
+def write_post():
     title = request.form['title']
     writer = request.form['writer']
     content = request.form['content']
-    theme = '-'
+    theme = request.form['theme']
     db.newWrite(title, writer, content, theme)
     return redirect(url_for('main.notice_board'))
 
 
-@bp.route('/notice_board/<float:title>/')
-def view(title):
-    sql = "SELECT * FROM board2 WHERE title = %s"
-    k = db.views(sql, title)
-    return render_template('view_board.html', article=k)
+@bp.route('/notice_board/<int:num>/')
+def view_post(num):
+    db.executeOne("UPDATE board SET views = views + 1 WHERE num = %s", (num,)) #조회수 증가
+    db.commit()
+    sql = "SELECT * FROM board WHERE num = %s"
+    article = db.executeOne(sql, num)
+    if article:
+        return render_template('view_post.html', article=article)
+    else:
+        abort(404)
 
 
-@bp.route('/del_board', methods=['POST'])
-def del_board():
+@bp.route('/delete_post', methods=['POST'])
+def delete_post():
     pass
 
 
@@ -131,4 +136,6 @@ def admin():
     
     return render_template('admin.html', data=users)
 
-
+@bp.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
