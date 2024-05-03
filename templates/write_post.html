@@ -16,13 +16,19 @@
     <hr>
 </div>
 <div>
-    <form action="/write_action" method="post">
+    <form action="/write_post" method="post">
         <p>제목</p>
         <input type="text" id="title" name="title"><br>
         <p>작성자</p>
         <input type="text" id="writer" name="writer"><br>
         <p>내용</p>
         <textarea id="content" name="content"></textarea>
+        <br>
+        <p>구분</p>
+        <select id="theme" name="theme">
+            <option value="일반">일반</option>
+            <option value="공지">공지</option>
+        </select>
         <br>
         <button type="submit">작성</button>
     </form>
