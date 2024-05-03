@@ -60,21 +60,20 @@ class Database():
         return data_list
 
     def newWrite(self, title="", writer="", content="", theme=""):
-        sql = "INSERT INTO board2 (num, title, writer, content, views, theme) VALUES (11, %s, %s, %s, 0, %s)"
+        sql = "INSERT INTO board (title, writer, content, views, theme) VALUES (%s, %s, %s, 0, %s)"
         values = (title, writer, content, theme)
         k = self.cursor.execute(sql, values)
         self.commit()
         return k
 
     def delWrite(self, write_id):
-        sql = "DELETE FROM board2 WHERE id = %s"
+        sql = "DELETE FROM board WHERE id = %s"
         d = self.executeOne(sql, write_id)
         self.commit()
         return d
 
-    def views(self, query, title):
+    def find(self, query, title):
         d = self.executeOne(query, title)
-        self.commit()
         return d
 
     def commit(self):
