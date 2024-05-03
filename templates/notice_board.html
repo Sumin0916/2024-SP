@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='css/notice_board.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Notice</title>
 </head>
 <body>
@@ -16,9 +18,7 @@
             {% include 'navbar.html' %}
           </ul>
         </nav>
-      </div>
-    <h1>자유게시판</h1>
-    <p>공지사항을 확인해 주세요.</p>
+    </div>
 
     <div class="container1">
         <div class="aside">
@@ -27,15 +27,30 @@
             공지사항
             </a>
             <a href="javascript:void(0)">
-                비품게시판
-                </a>
+            비품게시판
+            </a>
     </div>
 
     <div class="main-content">
         <div class="top_bg">
           <h3>숭실대 AI융합학부</h3>
-          <p>공지사항</p>
+          <p>게시판</p>
         </div>
+
+        <div class="path">
+            <ul>
+              <li>
+                <i class="fa-solid fa-house">&nbsp;</i>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>게시판</li>
+              <li>
+              <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>공지사항</li>
+            </ul>
+            <h4></h4>
+          </div>
 
 
 <main>
@@ -44,10 +59,12 @@
             <input type="text" placeholder="검색어를 입력하세요.">
             <button>검색</button>
         </form>
+
         <form action="/write">
-            <button type="submit" class="btn btn-primary">글쓰기</button>
-        </form>
+            <button type="submit" class="write-btn">글쓰기</button>
+         </form>
     </div>
+
     <table>
         <thead>
             <tr>
@@ -70,12 +87,19 @@
             {% endfor %}
         </tbody>
     </table>
-    <div class="page-btn">
-        <span class="num active">1</span>
-        <span class="num">2</span>
-    </div>
+        <div class="page-btn">
+            <span class="num active">1</span>
+            <span class="num">2</span>
+        </div>
+
 </main>
 
+<div style="margin-top: 50px;"></div>
+
+<div class="footer">
+    <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
+    <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
+</div>
 
 </body>
 </html>
