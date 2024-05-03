@@ -68,21 +68,21 @@
     <table>
         <thead>
             <tr>
-                <th>번호</th>
-                <th>구분</th>
                 <th>제목</th>
                 <th>글쓴이</th>
                 <th>조회수</th>
+                <th>작성일시</th>
             </tr>
         </thead>
         <tbody>
             {% for i in data_list %}
             <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ i.theme }}</td>
-                <td><a href="/notice_board/{{ i.title }}/">{{ i.title }}</a></td>
+                <td {% if i.theme == '공지' %}style="font-weight: bold; color: red;"{% endif %}>
+                    <a href="/notice_board/{{ i.num }}/">{{ i.title }}</a>
+                </td>                
                 <td>{{ i.writer }}</td>
                 <td>{{ i.views }}</td>
+                <td>{{ i.createdAt }}</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -93,6 +93,14 @@
         </div>
 
 </main>
+
+<script> //뒤로가기 버튼 눌렀을 때 강제로 새로고침
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    };
+</script>
 
 <div style="margin-top: 50px;"></div>
 
