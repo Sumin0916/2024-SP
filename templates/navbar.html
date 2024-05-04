@@ -20,10 +20,16 @@
                 <li><a href='#'>예약 변경</a></li>
               </ul>
               <ul class="ul-reset">
-                <li><h2>학과</h2></li>
-                <li><h2>학번</h2></li>
-                <li><h2>이름</h2></li>
-              </ul>
+                {% if user_info %}
+                <li><h2>학과: 미구현</li>
+                <li><h2>학번: {{ user_info.student_num }}</h2></li>
+                <li><h2>이름: {{ user_info.student_name }}</h2></li>
+                <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
+                <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+                {% else %}
+                <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
+                {% endif %}
+            </ul>
 
             </div>
           </div>
@@ -48,10 +54,16 @@
                       <li><a href='#'>예약 변경</a></li>
                     </ul>
                     <ul class="ul-reset">
-                        <li><h2>학과</h2></li>
-                        <li><h2>학번</h2></li>
-                        <li><h2>이름</h2></li>
-                    </ul>
+                      {% if user_info %}
+                      <li><h2>학과: 미구현</li>
+                      <li><h2>학번: {{ user_info.student_num }}</h2></li>
+                      <li><h2>이름: {{ user_info.student_name }}</h2></li>
+                      <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
+                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+                      {% else %}
+                      <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
+                      {% endif %}
+                  </ul>
 
                   </div>
                 </div>
@@ -76,10 +88,16 @@
                       <li><a href='#'>예약 변경</a></li>
                     </ul>
                     <ul class="ul-reset">
-                        <li><h2>학과</h2></li>
-                        <li><h2>학번</h2></li>
-                        <li><h2>이름</h2></li>
-                    </ul>
+                      {% if user_info %}
+                      <li><h2>학과: 미구현</li>
+                      <li><h2>학번: {{ user_info.student_num }}</h2></li>
+                      <li><h2>이름: {{ user_info.student_name }}</h2></li>
+                      <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
+                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+                      {% else %}
+                      <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
+                      {% endif %}
+                  </ul>
 
                   </div>
                 </div>
@@ -104,10 +122,16 @@
                       <li><a href='#'>예약 변경</a></li>
                     </ul>
                     <ul class="ul-reset">
-                        <li><h2>학과</h2></li>
-                        <li><h2>학번</h2></li>
-                        <li><h2>이름</h2></li>
-                    </ul>
+                      {% if user_info %}
+                      <li><h2>학과: 미구현</li>
+                      <li><h2>학번: {{ user_info.student_num }}</h2></li>
+                      <li><h2>이름: {{ user_info.student_name }}</h2></li>
+                      <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
+                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+                      {% else %}
+                      <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
+                      {% endif %}
+                  </ul>
 
                   </div>
                 </div>
@@ -132,11 +156,16 @@
                       <li><a href='#'>예약 변경</a></li>
                     </ul>
                     <ul class="ul-reset">
-                        <li><h2>학과</h2></li>
-                        <li><h2>학번</h2></li>
-                        <li><h2>이름</h2></li>
-                    </ul>
-
+                      {% if user_info %}
+                      <li><h2>학과: 미구현</li>
+                      <li><h2>학번: {{ user_info.student_num }}</h2></li>
+                      <li><h2>이름: {{ user_info.student_name }}</h2></li>
+                      <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
+                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+                      {% else %}
+                      <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
+                      {% endif %}
+                  </ul>
                   </div>
                 </div>
               </li>
