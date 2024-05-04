@@ -1,11 +1,23 @@
-from flask import Blueprint, render_template, request, redirect, url_for, abort
+from flask import Blueprint, render_template, request, redirect, url_for, abort, Flask, jsonify
 from dbModule import Database
+from datetime import datetime
 # from WebStockServer.DBmodels import ArticleRepository
 # import datetime, json, hashlib
 # from time import time
 
 bp = Blueprint('main', __name__, url_prefix='/')
 db = Database()
+
+
+def get_time_slots():  # 하루 동안 사용 가능한 시간 슬롯
+    return ["09:00~11:00", "11:00~13:00", "13:00~15:00", "15:00~17:00", "17:00~19:00"]
+
+
+def get_available_slots(date):
+    # all_slots = set(get_time_slots())
+    taken_slots = set([res['time_slot'] for res in db.fetch("SELECT time_slot FROM reservations WHERE date = %s", (date,))])
+    # available_slots = all_slots - taken_slots
+    return taken_slots
 
 
 @bp.route('/')
@@ -23,6 +35,7 @@ def login_account():
         user_info = db.searchAccount(login_id, login_pw)
         if user_info:
             return f"로그인 완료. 사용자 정보: {user_info}"
+            # return render_template('my_page.html')
         else:
             return "로그인 실패. 아이디 또는 비밀번호를 확인하세요."
     
@@ -33,9 +46,11 @@ def login_account():
 def home():
     return render_template('home.html')
 
+
 @bp.route('/facility')
 def facility():
     return render_template('facility.html')
+
 
 @bp.route('/register', methods=['POST'])
 def register():
@@ -119,6 +134,46 @@ def delete_post():
     pass
 
 
+@bp.route('/reserve', methods=['GET', 'POST'])
+def reserve():
+    if request.method == 'POST':
+        date = request.form.get('date')
+        time_slot = request.form.get('time_slot')
+        if not date or not time_slot:
+            return render_template('reserve.html', error="Please select both date and time slot.", date=date,
+                                   available_slots=get_time_slots())
+
+        existing = db.fetch("SELECT * FROM reservations WHERE date = %s AND time_slot = %s", (date, time_slot))
+        if existing:
+            error = "이미 예약된 시간대입니다. 다른 시간을 선택해 주세요."
+            taken_slots = get_available_slots(date)
+            return render_template('reserve.html', error=error, date=date, available_slots=get_time_slots(), taken_slots=taken_slots)
+
+        db.execute("INSERT INTO reservations (date, time_slot) VALUES (%s, %s)", (date, time_slot))
+        return "예약 완료! 이전 화면으로 돌아가려면 새로고침해주세요."
+        # return redirect(url_for('reserve_view'))
+    else:
+        date = request.args.get('date', str(datetime.today().strftime('%Y-%m-%d')))
+        taken_slots = get_available_slots(date)
+        return render_template('reserve.html', date=date, available_slots=get_time_slots(), taken_slots=taken_slots)
+
+
+@bp.route('/add_reservation', methods=['POST'])
+def add_reservation():
+    data = request.get_json()
+    date = data['date']
+    time_slot = data['time_slot']
+    db.execute("INSERT INTO reservations (date, time_slot) VALUES (%s, %s)", (date, time_slot))
+    return jsonify({"status": "success", "message": "성공적으로 예약되었습니다!"})
+
+
+@bp.route('/reserve_view')
+def reserve_view():
+    # message = request.args.get('message', '')
+    sql = "SELECT * FROM reservations ORDER BY date, time_slot"
+    reservations = db.fetch(sql)
+    return render_template('reserve_view.html', reservations=reservations)
+
 # @bp.app_template_filter("formatdatetime")
 # def format_datetime(value):
 #     if value is None:
@@ -127,7 +182,6 @@ def delete_post():
 #     offset = datetime.fromtimestamp(now_timestamp) - datetime.utcfromtimestamp(now_timestamp)
 #     value = datetime.fromtimestamp(int(value / 1000)) + offset
 #     return value.strftime('%Y-%m-%d %H:%M:%S')
-
 
 @bp.route('/admin') # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지
 def admin():

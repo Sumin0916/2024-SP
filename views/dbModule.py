@@ -1,7 +1,7 @@
 import pymysql, hashlib
 
 class Database():
-    def __init__(self): 
+    def __init__(self):
         self.db = pymysql.connect(host='qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
                             port=3306,
                             user='h8n2dnx48lgj0h1e',
@@ -13,6 +13,7 @@ class Database():
 
     def execute(self, query, args={}):
         self.cursor.execute(query, args)
+        self.db.commit()
 
     def executeOne(self, query, args={}):
         self.cursor.execute(query, args)
@@ -71,6 +72,10 @@ class Database():
         d = self.executeOne(sql, write_id)
         self.commit()
         return d
+
+    def fetch(self, query, args={}):
+        self.cursor.execute(query, args)
+        return self.cursor.fetchall()
 
     def find(self, query, title):
         d = self.executeOne(query, title)

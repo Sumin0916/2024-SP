@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>예약 현황</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <h1>Current Reservations</h1>
+    {% if message %}
+    <p style="color: green;">{{ message }}</p>
+    {% endif %}
+    <table border="1">
+        <thead>
+            <tr>
+                <th>날짜</th>
+                <th>시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.date }}</td>
+                <td>{{ reservation.time_slot }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/reserve">Make a New Reservation</a>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>예약하기</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+</head>
+<body>
+    <h1>원하는 예약 시간을 선택해 주세요.</h1>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/reserve" method="post">
+        <label for="date">날짜:</label>
+        <input type="date" id="date" name="date" value="{{ date }}" required>
+        <label for="time_slot">시간:</label>
+        <select id="time_slot" name="time_slot" required>
+            {% for slot in available_slots %}
+            <option value="{{ slot }}">{{ slot }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">예약하기</button>
+    </form>
+    <a href="/reserve_view">전체 예약 현황 보기</a>
+</body>
+</html>
