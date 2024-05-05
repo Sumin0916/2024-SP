@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>예약 현황</title>
     <link href=https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css' rel='stylesheet' />
+    <button class="btn" onclick="location.href='/reserve'">예약 페이지로 이동하기</button>
 </head>
 <body>
     <h1>예약 현황</h1>
@@ -28,5 +29,14 @@
             calendar.render();
         });
     </script>
+
+{%with messages = get_flashed_messages()%}
+{%if messages %}
+  <script type="text/javascript"> //Flask에서 경고문이 왔다면 창에 띄워준다
+    alert("{{messages[-1]}}");
+  </script>
+  {%endif%}
+{%endwith%}
+
 </body>
 </html>

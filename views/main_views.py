@@ -207,8 +207,8 @@ def reserve():
                                    taken_slots=taken_slots, rooms=get_rooms(), selected_room=room)
 
         db.execute("INSERT INTO reservations (date, time_slot, room) VALUES (%s, %s, %s)", (date, time_slot, room))
-        return "예약 완료! 이전 화면으로 돌아가려면 새로고침해주세요."
-        # return redirect(url_for('reserve_view'))
+        flash("예약이 완료되었습니다.")
+        return redirect(url_for('main.reserve_view'))
     else:
         date = request.args.get('date', str(datetime.today().strftime('%Y-%m-%d')))
         room = request.args.get('room', 'room1')  #default
