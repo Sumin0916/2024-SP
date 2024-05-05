@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, abort, session, flash, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, abort, session, flash, jsonify, Flask
 from dbModule import Database
 from datetime import datetime
 
@@ -11,11 +11,15 @@ def get_time_slots():  # 하루 동안 사용 가능한 시간 슬롯
     return ["09:00~11:00", "11:00~13:00", "13:00~15:00", "15:00~17:00", "17:00~19:00"]
 
 
-def get_available_slots(date):
+def get_available_slots(date, room):
     # all_slots = set(get_time_slots())
-    taken_slots = set([res['time_slot'] for res in db.fetch("SELECT time_slot FROM reservations WHERE date = %s", (date,))])
+    taken_slots = set([res['time_slot'] for res in db.fetch("SELECT time_slot FROM reservations WHERE date = %s AND room = %s", (date, room))])
     # available_slots = all_slots - taken_slots
     return taken_slots
+
+
+def get_rooms():
+    return ['room1', 'room2', 'room3']
 
 
 @bp.route('/')
@@ -189,23 +193,28 @@ def reserve():
     if request.method == 'POST':
         date = request.form.get('date')
         time_slot = request.form.get('time_slot')
-        if not date or not time_slot:
-            return render_template('reserve.html', error="Please select both date and time slot.", date=date,
-                                   available_slots=get_time_slots())
+        room = request.form.get('room')
+        if not date or not time_slot or not room:
+            return render_template('reserve.html', error="Please select date, time slot, and room.", date=date,
+                                   available_slots=get_time_slots(), rooms=get_rooms())
 
-        existing = db.fetch("SELECT * FROM reservations WHERE date = %s AND time_slot = %s", (date, time_slot))
+        existing = db.fetch("SELECT * FROM reservations WHERE date = %s AND time_slot = %s AND room = %s",
+                            (date, time_slot, room))
         if existing:
-            error = "이미 예약된 시간대입니다. 다른 시간을 선택해 주세요."
-            taken_slots = get_available_slots(date)
-            return render_template('reserve.html', error=error, date=date, available_slots=get_time_slots(), taken_slots=taken_slots)
+            error = "이미 예약된 시간대입니다. 다른 시간 또는 다른 세미나실을 선택해 주세요."
+            taken_slots = get_available_slots(date, room)
+            return render_template('reserve.html', error=error, date=date, available_slots=get_time_slots(),
+                                   taken_slots=taken_slots, rooms=get_rooms(), selected_room=room)
 
-        db.execute("INSERT INTO reservations (date, time_slot) VALUES (%s, %s)", (date, time_slot))
+        db.execute("INSERT INTO reservations (date, time_slot, room) VALUES (%s, %s, %s)", (date, time_slot, room))
         return "예약 완료! 이전 화면으로 돌아가려면 새로고침해주세요."
         # return redirect(url_for('reserve_view'))
     else:
         date = request.args.get('date', str(datetime.today().strftime('%Y-%m-%d')))
-        taken_slots = get_available_slots(date)
-        return render_template('reserve.html', date=date, available_slots=get_time_slots(), taken_slots=taken_slots)
+        room = request.args.get('room', 'room1')  #default
+        taken_slots = get_available_slots(date, room)
+        return render_template('reserve.html', date=date, available_slots=get_time_slots(),
+                               taken_slots=taken_slots, rooms=get_rooms(), selected_room=room)
 
 
 @bp.route('/add_reservation', methods=['POST'])
@@ -223,6 +232,31 @@ def reserve_view():
     sql = "SELECT * FROM reservations ORDER BY date, time_slot"
     reservations = db.fetch(sql)
     return render_template('reserve_view.html', reservations=reservations)
+
+
+@bp.route('/get-reservations')
+def get_reservations():
+    # sql1 = "SELECT * FROM reservations ORDER BY date, time_slot"
+    sql2 = "SELECT date, time_slot, room FROM reservations"
+    reservations = db.fetch(sql2)
+    events = []
+    # FullCalendar의 이벤트 형식에 맞춰 데이터 변환
+    for reservation in reservations:
+        start_time, end_time = reservation['time_slot'].split('~')
+        start_datetime = f"{reservation['date']}T{start_time}"
+        end_datetime = f"{reservation['date']}T{end_time}"
+        room_color = {
+            'room1': '#007bff',
+            'room2': '#28a745',
+            'room3': '#ffc107'
+        }
+        events.append({
+            'title': f"{reservation['time_slot']} 예약 ({reservation['room']})",
+            'start': start_datetime,
+            'end': end_datetime,
+            'color': room_color.get(reservation['room'], '#333')
+        })
+    return jsonify(events)  # JSON 형식으로 이벤트 데이터 반환
 
 
 @bp.route('/admin')  # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지
