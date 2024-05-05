@@ -140,12 +140,13 @@ h2 {
 }
 
 .path h4 {
-  width: 200%;
+  width: 100%;
+  text-align: left;
   color: #006694;
   padding-bottom: 5px;
+  padding-left: 290px;
   border-bottom: 2px solid #006694;
   font-size: 22px;
-  margin-left: -1360px;
 }
 
 .building {
@@ -172,13 +173,9 @@ h2 {
 
 .building .info img {
   max-width: 40%;
-  margin-left: 20px;
-}
-
-.building img {
-    max-width: 30%;
-    height: auto;
-    margin-bottom: 10px;
+  margin-left: 450px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 .building h3 {
@@ -190,4 +187,13 @@ h2 {
 .building p {
   color: #006694;
   font-size: 20px;
+}
+
+.footer {
+  background-color: #60c1c3;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
 }
