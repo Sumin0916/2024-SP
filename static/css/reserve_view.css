@@ -1,0 +1,40 @@
+main {
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 80%;
+    font-size: 18px;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+
+  #calendar {
+    max-width: 80%; 
+    margin: 0 0 0 auto;
+    margin-right: 20px;
+}
+
+.fc-col-header-cell-cushion, .fc-daygrid-day-number {
+    color: #3498db;
+}
+
+  /*footer*/
+
+  .footer {
+    background-color: #60c1c3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+  }
