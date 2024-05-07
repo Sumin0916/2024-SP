@@ -27,7 +27,8 @@
     -webkit-tap-highlight-color:transparent;
   }
   
-  .aside a:hover {
+  .aside a:hover,
+  .aside a.active {
     color: #006694;
     background: #fff;
     outline: none;
@@ -37,7 +38,8 @@
     border-bottom-left-radius: 20px;
   }
   
-  .aside a:hover::after {
+  .aside a:hover::after,
+  .aside a.active::after {
     content: "";
     position: absolute;
     background-color: transparent;
@@ -49,17 +51,18 @@
     box-shadow: 0 20px 0 0 #fff;
   }
   
-  .aside a:hover::before {
-    content: "";
-    position: absolute;
-    background-color: transparent;
-    top: 38px;
-    right: 0;
-    height: 35px;
-    width: 35px;
-    border-top-right-radius: 18px;
-    box-shadow: 0 -20px 0 0 #fff;
-  }
+.aside a:hover::before,
+.aside a.active::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  top: 38px;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  border-top-right-radius: 18px;
+  box-shadow: 0 -20px 0 0 #fff;
+}
   
   .aside h3 {
     margin: 0;
