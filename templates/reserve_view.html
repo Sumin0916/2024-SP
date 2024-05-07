@@ -3,24 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>예약 현황</title>
-    <link href=https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css' rel='stylesheet' />
-    <button class="btn" onclick="location.href='/reserve'">예약 페이지로 이동하기</button>
-    <style>
-        .btn {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            cursor: pointer;
-          }
-          
-          .btn:hover {
-            background-color: #2980b9;
-          }
-    </style>
+    <link href=https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reserve_view.css')}}">
 </head>
 <body>
+  <div class="header">
+    <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+    <nav>
+        <ul class="container ul-reset">
+            {% include 'navbar.html' %}
+        </ul>
+    </nav>
+</div>
+<div class="container1">
+    <div class="aside">
+        <h3> 예약하기 </h3>
+        <a href="javascript:void(0)"> 세미나실 예약 </a>
+        <a href="javascript:void(0)" class="active"> 예약 현황 </a>
+    </div>
+</div>
+<div class="main-content">
+    <div class="top_bg">
+        <h3>숭실대 AI융합학부</h3>
+        <p>세미나실 예약</p>
+    </div>
+</div>
+<div class="path">
+    <ul>
+        <li>
+            <i class="fa-solid fa-house">&nbsp;</i>
+            <i class="fa-solid fa-angle-right">&nbsp;</i>
+        </li>
+        <li>예약하기</li>
+        <li>
+            <i class="fa-solid fa-angle-right">&nbsp;</i>
+        </li>
+        <li>세미나실 예약</li>
+    </ul>
+    <h4></h4>
+   <main> 
+</div>
     <h1>예약 현황</h1>
     <div id='calendar'></div>  <!-- 달력을 표시할 요소 -->
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
@@ -51,6 +77,16 @@
   </script>
   {%endif%}
 {%endwith%}
+<div style="margin-top: 100px;"></div>
 
+<button class="btn" onclick="location.href='/reserve'">예약 페이지로 이동하기</button>
+
+<div style="margin-top: 100px;"></div>
+
+<div class="footer">
+  <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
+  <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
+</div>
+</main>
 </body>
 </html>
