@@ -4,13 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물</title>
-    <style>
-        /* CSS 스타일링은 여기에 작성합니다. */
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/view_post.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
 </head>
 <body>
-    <!-- 게시물 정보를 표시하는 부분 -->
-    <div class="container">
+    <div class="header">
+        <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+            
+        <nav>
+          <ul class="container ul-reset">
+            {% include 'navbar.html' %}
+          </ul>
+        </nav>
+    </div>
+
+    <div class="container1">
+        <div class="aside">
+            <h3> 게시판 </h3>
+            <a href="javascript:void(0)" class="active">
+            공지사항
+            </a>
+            <a href="javascript:void(0)">
+            비품게시판
+            </a>
+    </div>
+
+    <div class="main-content">
+        <div class="top_bg">
+          <h3>숭실대 AI융합학부</h3>
+          <p>게시판</p>
+        </div>
+
+        <div class="path">
+            <ul>
+              <li>
+                <i class="fa-solid fa-house">&nbsp;</i>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>게시판</li>
+              <li>
+              <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>공지사항</li>
+            </ul>
+            <h4></h4>
+          </div>
+<main>
+    <div class="contain">
         <h1>{{ article.title }}</h1>
         <div class="article-info">
             <div class="article-title">
@@ -23,7 +66,7 @@
             </div>
         </div>
         <div class="article-content">
-            <p><strong>내용:</strong> {{ article.content }}</p>
+            <p> {{ article.content }}</p>
         </div>
         <!-- 삭제 버튼 추가 -->
         <form action="/delete_post" method="post">
@@ -32,5 +75,11 @@
             <button type="submit">게시물 삭제</button>
         </form>
     </div>
+</main>
+    <div class="footer">
+        <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
+        <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
+    </div>
 </body>
 </html>
+
