@@ -1,0 +1,124 @@
+
+main {
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+}
+  
+  h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-right: 50%;
+  }
+
+  form {
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(3, 43, 175, 0.1);
+  }
+  
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="date"],
+  select {
+    width: 100%;
+    padding: 15px; 
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.5);
+    font-size: 32px; 
+  padding: 8px;
+  }
+
+  button[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 18px; 
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #2980b9;
+  }
+  
+  a {
+    display: block;
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 20px;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /*footer*/
+
+.footer {
+    background-color: #60c1c3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+  }
+
+/* 달력 */
+
+.flatpickr-calendar {
+    width: 300px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    font-size: 30px;
+  }
+  
+  .flatpickr-day.selected {
+    background-color: #3498db !important; 
+    color: #fff !important; 
+  }
+  
+  .flatpickr-day.today {
+    border-color: #3498db;
+  }
+  
+  .flatpickr-months .flatpickr-prev-month,
+  .flatpickr-months .flatpickr-next-month {
+    color: #3498db !important; 
+  }
+  
+  .flatpickr-current-month .numInputWrapper span {
+    border-color: #3498db !important; 
+  }
+  
+  #date {
+    width: 200px; 
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 3px;
+    font-size: 18px; 
+  }
+
+.alt-input-class { 
+    font-size: 20px;
+    text-align: center;
+}
