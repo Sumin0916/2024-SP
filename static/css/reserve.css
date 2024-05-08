@@ -1,3 +1,4 @@
+
 main {
     margin-left: 250px; 
     width: calc(100% - 250px); 
@@ -15,7 +16,7 @@ main {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(3, 43, 175, 0.1);
+    box-shadow: 0 2px 5px rgba(3, 43, 175, 0.3);
   }
   
   
@@ -85,9 +86,9 @@ main a:hover {
 /* 달력 */
 
 .flatpickr-calendar {
-    width: 300px; 
+    width: 500px; 
     border-radius: 5px; 
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); 
     font-size: 30px;
   }
   
@@ -120,4 +121,8 @@ main a:hover {
 .alt-input-class { 
     font-size: 20px;
     text-align: center;
+}
+
+.alt-input-class:hover{
+border: 2px solid #3498db78; 
 }
