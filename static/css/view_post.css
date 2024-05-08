@@ -25,21 +25,33 @@ h1 {
     text-align: left;
 }
 
-.article-info {
-    margin-bottom: 20px;
-    text-align: left;
+.article-other {
+    color: #9a9a9a;
+    display: flex;
+    align-items: center;
 }
-
-.article-title p {
-    margin: 0;
-    color: #333;
-    text-align: left;
-}
-
+   
 .article-other p {
-    margin: 5px 0;
-    color: #333;
-    text-align: left;
+    margin-right: 10px;
+ font-size: 14px;
+   }
+   
+.article-other p:first-child::after {
+    content: "·";
+    margin-left: 5px;
+}
+   
+.article-other p:nth-child(2)::before {
+ font-weight: bold;
+   }
+   
+.article-other p:nth-child(2)::after {
+    content: "·";
+    margin-left: 5px;
+}
+
+.article-other p:nth-child(3)::before {
+    font-weight: bold;
 }
 
 .article-content {
