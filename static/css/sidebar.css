@@ -79,15 +79,16 @@
 height: auto;
 min-height: 320px;
 display: flex;
-background: linear-gradient(to right, #fff, #60c1c3);
-align-items: center;
+background-image: url('/static/img/navbar.png'); 
+margin-left: 100px; 
+width: calc(100% - 100px); 
 }
 
 .top_bg h3 {
 position: absolute;
 right: 100px;
 font-size: 26px;
-color: #006694;
+color: #fff;
 }
 
 .top_bg p {
@@ -96,7 +97,7 @@ top: 160px;
 right: 100px;
 font-size: 20px;
 font-weight: bold;
-color: #006694;
+color: #fff;
 }
 
 /*path*/
