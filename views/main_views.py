@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, abort, session, flash, jsonify, Flask
 from dbModule import Database
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 bp = Blueprint('main', __name__, url_prefix='/')
@@ -136,6 +136,8 @@ def notice_board():
     user_info = session.get('user_info')
     sql = "SELECT * FROM board ORDER BY theme, num DESC"
     data_list = db.execute_board(sql)
+    for item in data_list:
+        item['createdAt'] += timedelta(hours=9)
     return render_template('notice_board.html', data_list=data_list, user_info=user_info)
 
 
@@ -160,6 +162,33 @@ def write_post():
     return redirect(url_for('main.notice_board'))
 
 
+@bp.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
+def edit_post(post_id):
+    if request.method == 'GET':
+        sql = "SELECT * FROM board WHERE num = %s"
+        article = db.executeOne(sql, (post_id))
+        user_info = session.get('user_info')
+        if user_info is None:
+            return redirect(url_for('login'))
+        if user_info.get('account_id') != article.get('writer'):
+            flash("수정할 권한이 없습니다.")
+            return redirect(url_for('main.notice_board'))  # 게시글 목록 페이지로 리디렉션
+        return render_template('edit_post.html', article=article)
+    else:
+        title = request.form['title']
+        content = request.form['content']
+        theme = request.form['theme']
+        writer = session.get('user_info').get('account_id')
+        sql = """
+        UPDATE board
+        SET title = %s, content = %s, theme = %s, updatedAt = CURRENT_TIMESTAMP
+        WHERE num = %s
+        """
+        db.execute(sql, (title, content, theme, post_id))
+        db.commit()
+        return redirect(url_for('main.notice_board'))
+
+
 @bp.route('/delete_post', methods=['POST'])
 def delete_post():
     post_id = request.form['num']
@@ -178,12 +207,13 @@ def delete_post():
 
 @bp.route('/notice_board/<int:num>/')
 def view_post(num):
+    user_info = session.get('user_info')
     db.executeOne("UPDATE board SET views = views + 1 WHERE num = %s", (num,))  # 조회수 증가
     db.commit()
     sql = "SELECT * FROM board WHERE num = %s"
     article = db.executeOne(sql, num)
     if article:
-        return render_template('view_post.html', article=article)
+        return render_template('view_post.html', article=article, user_info=user_info)
     else:
         abort(404)
 
@@ -267,6 +297,7 @@ def admin():
     return render_template('admin.html', data=users)
 
 
+@bp.route('/404')  # 404 페이지
 @bp.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
