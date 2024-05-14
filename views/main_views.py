@@ -297,7 +297,10 @@ def admin():
     return render_template('admin.html', data=users)
 
 
-@bp.route('/404')  # 404 페이지
+@bp.route('/404')
+def not_found():
+    abort(404)
+
 @bp.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
