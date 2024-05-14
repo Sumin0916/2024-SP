@@ -70,11 +70,15 @@
             <p> {{ article.content }}</p>
         </div>
         <!-- 삭제 버튼 추가 -->
+        {% if user_info and article.writer == user_info.get("account_id") %}
         <form action="/delete_post" method="post">
             <input type="hidden" name="num" value="{{ article.num }}">
             <input type="hidden" name="writer" value="{{ article.writer }}">
             <button type="submit">게시물 삭제</button>
         </form>
+        <button class="login-btn"onclick="location.href='/edit_post/{{ article.num }}'">게시글 수정</button>
+        {% endif %}
+        <button class="login-btn"onclick="location.href='/notice_board'">게시글 목록으로</button>
     </div>
 </main>
     <div class="footer">
