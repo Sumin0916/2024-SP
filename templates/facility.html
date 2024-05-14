@@ -11,9 +11,9 @@
 <body>
 
     <div class="header">
-
-        <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
-        
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+        </a>
         <nav>
           <ul class="container ul-reset">
             {% include 'navbar.html' %}
