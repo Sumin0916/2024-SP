@@ -1,3 +1,7 @@
+body {
+    color: black;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -7,10 +11,17 @@ th, td {
     border: 1px solid #dddddd;
     text-align: center;
     padding: 8px;
+    color: black; /* 글씨 색깔 검은색으로 설정 */
 }
 
 th {
     background-color: #f2f2f2;
+}
+
+/* 최근 사용자와 학번 셀의 간격을 조정 */
+th:nth-child(6), td:nth-child(6),
+th:nth-child(7), td:nth-child(7) {
+    padding: 2px; /* 최근 사용자와 학번 셀에 대한 새로운 간격 */
 }
 
 form {
@@ -34,5 +45,3 @@ button {
 button:hover {
     background-color: #1976D2;
 }
-
-

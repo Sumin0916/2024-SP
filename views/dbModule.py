@@ -40,12 +40,14 @@ class Database():
         hashed_pw = hashlib.sha256(login_pw.encode()).hexdigest()
         return self.executeOne(sql, (login_id, hashed_pw))
 
-    def addEquipment(self, name="", category="", description="", quantity=0, purchase_date="", location=""):
+    def addEquipment(self, name="", category="", description="", quantity=0, purchase_date="", location="", user_info=""):
         sql = """
-        INSERT INTO equipments (name, category, description, quantity, purchase_date, location)
-        VALUES (%s, %s, %s, %s, %s, %s)
+        INSERT INTO equipments (name, category, description, quantity, purchase_date, location, latest_name , latest_number)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
-        result_row = self.executeOne(sql, (name, category, description, quantity, purchase_date, location))
+        latest_number = user_info.get('student_num')
+        latest_name = user_info.get('student_name')
+        result_row = self.executeOne(sql, (name, category, description, quantity, purchase_date, location, latest_name, latest_number))
         self.commit()
         return result_row
 
@@ -55,15 +57,15 @@ class Database():
         self.commit()
         return result_row
 
-    def minusEquipment(self, equipment_id):
-        sql = "UPDATE equipments SET quantity = quantity -1 WHERE id = %s"
-        result_row = self.executeOne(sql, equipment_id)
+    def minusEquipment(self, equipment_id, user_info):
+        sql = "UPDATE equipments SET quantity = quantity -1, latest_name = %s, latest_number = %s WHERE id = %s"
+        result_row = self.executeOne(sql,(user_info['student_name'], user_info['student_num'], equipment_id))
         self.commit()
         return result_row
 
-    def plusEquipment(self, equipment_id):
-        sql = "UPDATE equipments SET quantity = quantity +1 WHERE id = %s"
-        result_row = self.executeOne(sql, equipment_id)
+    def plusEquipment(self, equipment_id, user_info):
+        sql = "UPDATE equipments SET quantity = quantity +1, latest_name = %s, latest_number = %s WHERE id = %s"
+        result_row = self.executeOne(sql,(user_info['student_name'], user_info['student_num'], equipment_id))
         self.commit()
         return result_row
 

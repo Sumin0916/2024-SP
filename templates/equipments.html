@@ -34,6 +34,8 @@
                 <th>카테고리</th>
                 <th>설명</th>
                 <th>수량</th>
+                <th>최근 사용자</th>
+                <th>학번</th>
                 <th>구매일</th>
                 <th>위치</th>
                 <th>삭제</th>
@@ -58,9 +60,9 @@
                         <input type="hidden" name="quantity" value="{{ equipment.quantity }}">
                         <button>+1</button>
                     </form>
-
                 </td>
-
+                <td>{{ equipment.latest_name }}</td>
+                <td>{{ equipment.latest_number }}</td>
                 <td>{{ equipment.purchase_date }}</td>
                 <td>{{ equipment.location }}</td>
                 <td>
@@ -73,5 +75,12 @@
             {% endfor %}
         </tbody>
     </table>
+    {%with messages = get_flashed_messages()%}
+    {%if messages %}
+      <script type="text/javascript"> //Flask에서 경고문이 왔다면 창에 띄워준다
+        alert("{{messages[-1]}}");
+      </script>
+      {%endif%}
+    {%endwith%}
 </body>
 </html>
