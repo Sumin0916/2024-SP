@@ -55,6 +55,18 @@ class Database():
         self.commit()
         return result_row
 
+    def minusEquipment(self, equipment_id):
+        sql = "UPDATE equipments SET quantity = quantity -1 WHERE id = %s"
+        result_row = self.executeOne(sql, equipment_id)
+        self.commit()
+        return result_row
+
+    def plusEquipment(self, equipment_id):
+        sql = "UPDATE equipments SET quantity = quantity +1 WHERE id = %s"
+        result_row = self.executeOne(sql, equipment_id)
+        self.commit()
+        return result_row
+
     def execute_board(self, query, args={}):
         self.cursor.execute(query, args)
         data_list = self.cursor.fetchall()

@@ -126,7 +126,25 @@ def add_equipment():
 def delete_equipment():
     if request.method == 'POST':
         equipment_id = request.form['id']
-        db.deleteEquipment(equipment_id)
+        db.minusEquipment(equipment_id)
+
+        return redirect(url_for('main.equipments'))
+
+
+@bp.route('/modify_equipment_minus', methods=['POST'])
+def minus_equipment():
+    if request.method == 'POST':
+        equipment_id = request.form['id']
+        db.minusEquipment(equipment_id)
+
+        return redirect(url_for('main.equipments'))
+
+
+@bp.route('/modify_equipment_plus', methods=['POST'])
+def plus_equipment():
+    if request.method == 'POST':
+        equipment_id = request.form['id']
+        db.plusEquipment(equipment_id)
 
         return redirect(url_for('main.equipments'))
 

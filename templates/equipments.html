@@ -46,7 +46,21 @@
                 <td>{{ equipment.name }}</td>
                 <td>{{ equipment.category }}</td>
                 <td>{{ equipment.description }}</td>
-                <td>{{ equipment.quantity }}</td>
+                <td>
+                    {{ equipment.quantity }}&nbsp;&nbsp;
+                    <form action="/modify_equipment_minus" method="POST">
+                        <input type="hidden" name="id" value="{{ equipment.id }}">
+                        <input type="hidden" name="quantity" value="{{ equipment.quantity }}">
+                        <button>-1</button>
+                    </form>
+                    <form action="/modify_equipment_plus" method="POST">
+                        <input type="hidden" name="id" value="{{ equipment.id }}">
+                        <input type="hidden" name="quantity" value="{{ equipment.quantity }}">
+                        <button>+1</button>
+                    </form>
+
+                </td>
+
                 <td>{{ equipment.purchase_date }}</td>
                 <td>{{ equipment.location }}</td>
                 <td>
