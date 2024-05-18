@@ -12,14 +12,12 @@ def get_time_slots():  # 하루 동안 사용 가능한 시간 슬롯
 
 
 def get_available_slots(date, room):
-    # all_slots = set(get_time_slots())
     taken_slots = set([res['time_slot'] for res in db.fetch("SELECT time_slot FROM reservations WHERE date = %s AND room = %s", (date, room))])
-    # available_slots = all_slots - taken_slots
     return taken_slots
 
 
 def get_rooms():
-    return ['room1', 'room2', 'room3']
+    return ['세미나룸1', '세미나룸2']
 
 
 @bp.route('/')
@@ -294,9 +292,9 @@ def get_reservations():
         start_datetime = f"{reservation['date']}T{start_time}"
         end_datetime = f"{reservation['date']}T{end_time}"
         room_color = {
-            'room1': '#007bff',
-            'room2': '#28a745',
-            'room3': '#ffc107'
+            '세미나룸1': '#007bff',
+            '세미나룸2': '#28a745',
+            # 'room3': '#ffc107'
         }
         events.append({
             'title': f"{reservation['time_slot']} 예약 ({reservation['room']})",
