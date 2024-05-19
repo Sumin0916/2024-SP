@@ -126,6 +126,9 @@ def add_equipment():
 @bp.route('/delete_equipment', methods=['POST'])
 def delete_equipment():
     user_info = session.get('user_info')
+    if not user_info:
+        flash("로그인이 필요합니다.")
+        return redirect(url_for('main.equipments'))
     if request.method == 'POST':
         equipment_id = request.form['id']
         db.minusEquipment(equipment_id)
@@ -136,6 +139,9 @@ def delete_equipment():
 @bp.route('/modify_equipment_minus', methods=['POST'])
 def minus_equipment():
     user_info = session.get('user_info')
+    if not user_info:
+        flash("로그인이 필요합니다.")
+        return redirect(url_for('main.equipments'))
     if request.method == 'POST':
         equipment_id = request.form['id']
         db.minusEquipment(equipment_id, user_info)
@@ -146,6 +152,9 @@ def minus_equipment():
 @bp.route('/modify_equipment_plus', methods=['POST'])
 def plus_equipment():
     user_info = session.get('user_info')
+    if not user_info:
+        flash("로그인이 필요합니다.")
+        return redirect(url_for('main.equipments'))
     if request.method == 'POST':
         equipment_id = request.form['id']
         db.plusEquipment(equipment_id, user_info)
