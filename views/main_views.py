@@ -261,6 +261,9 @@ def view_post(num):
 def reserve():
     user_info = session.get('user_info')
     if request.method == 'POST':
+        if not user_info:
+            flash("로그인이 필요한 서비스입니다.")
+            return redirect(url_for('main.reserve'))
         date = request.form.get('date')
         time_slot = request.form.get('time_slot')
         room = request.form.get('room')
