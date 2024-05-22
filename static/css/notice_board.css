@@ -102,5 +102,6 @@ td a:hover {
     text-align: center;
     padding: 20px;
     bottom: 0;
-    width: 100%;
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
   }
