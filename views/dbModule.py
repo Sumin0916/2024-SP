@@ -26,6 +26,10 @@ class Database():
         return row
     
     def addStudent(self, account_id, name, pw, student_num, phone_num):
+        sql = "SELECT * FROM user WHERE account_id=%s"
+        result_row = self.executeOne(sql, (account_id))
+        if result_row:
+            return False
         sql = """
         INSERT INTO user (account_id, student_name, password_hash, student_num, phone_num)
         VALUES (%s, %s, %s, %s, %s)
@@ -51,11 +55,17 @@ class Database():
         self.commit()
         return result_row
 
-    def deleteEquipment(self, equipment_id):
+    def deleteEquipment(self, equipment_id, user_info):
+        sql = "SELECT * FROM equipments WHERE id = %s"
+        result_row = self.executeOne(sql, equipment_id)
+        self.commit()
+        student_name = user_info.get('student_name')
+        if (student_name not in result_row) and student_name != 'admin':
+            return 1
         sql = "DELETE FROM equipments WHERE id = %s"
         result_row = self.executeOne(sql, equipment_id)
         self.commit()
-        return result_row
+        return 0
 
     def minusEquipment(self, equipment_id, user_info):
         sql = "UPDATE equipments SET quantity = quantity -1, latest_name = %s, latest_number = %s WHERE id = %s"

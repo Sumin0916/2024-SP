@@ -38,7 +38,8 @@ def login_account():
             session['user_info'] = user_info
             return redirect('/')
         else:
-            return "로그인 실패. 아이디 또는 비밀번호를 확인하세요."
+            flash("로그인 정보가 틀렸습니다.")
+            return redirect(url_for('main.login_account'))
 
     return render_template('login_account.html')
 
@@ -62,9 +63,12 @@ def register():
     password = recieved_data['regi_pw']
     account_id = recieved_data['regi_id']
 
-    db.addStudent(account_id, student_name, password, student_num, phone_num)
+    if db.addStudent(account_id, student_name, password, student_num, phone_num):
+        flash("회원가입 완료!")
+        return redirect(url_for('main.login_account'))
 
-    return "회원가입 완료"
+    flash("이미 존재하는 아이디입니다.")
+    return redirect(url_for('main.login_account'))
 
 
 @bp.route('/logout')
@@ -102,9 +106,10 @@ def update_phone_number():
 
 @bp.route('/equipments')
 def equipments():
+    user_info = session.get('user_info')
     sql = "SELECT * FROM equipments"
     equipments = db.executeAll(sql)
-    return render_template('equipments.html', equipments=equipments)
+    return render_template('equipments.html', equipments=equipments, user_info=user_info)
 
 
 @bp.route('/add_equipment', methods=['POST'])
@@ -131,9 +136,11 @@ def delete_equipment():
         return redirect(url_for('main.equipments'))
     if request.method == 'POST':
         equipment_id = request.form['id']
-        db.minusEquipment(equipment_id)
-
-        return redirect(url_for('main.equipments'))
+        if db.deleteEquipment(equipment_id, user_info) == 0:
+            flash("삭제 완료.")
+            return redirect(url_for('main.equipments'))
+    flash("삭제 권한이 없습니다.")
+    return redirect(url_for('main.equipments'))
 
 
 @bp.route('/modify_equipment_minus', methods=['POST'])
@@ -251,6 +258,7 @@ def view_post(num):
 
 @bp.route('/reserve', methods=['GET', 'POST'])
 def reserve():
+    user_info = session.get('user_info')
     if request.method == 'POST':
         date = request.form.get('date')
         time_slot = request.form.get('time_slot')
@@ -275,7 +283,7 @@ def reserve():
         room = request.args.get('room', 'room1')  #default
         taken_slots = get_available_slots(date, room)
         return render_template('reserve.html', date=date, available_slots=get_time_slots(),
-                               taken_slots=taken_slots, rooms=get_rooms(), selected_room=room)
+                               taken_slots=taken_slots, rooms=get_rooms(), selected_room=room, user_info=user_info)
 
 
 @bp.route('/add_reservation', methods=['POST'])
@@ -290,9 +298,10 @@ def add_reservation():
 @bp.route('/reserve_view')
 def reserve_view():
     # message = request.args.get('message', '')
+    user_info = session.get('user_info')
     sql = "SELECT * FROM reservations ORDER BY date, time_slot"
     reservations = db.fetch(sql)
-    return render_template('reserve_view.html', reservations=reservations)
+    return render_template('reserve_view.html', reservations=reservations, user_info=user_info)
 
 
 @bp.route('/get-reservations')
