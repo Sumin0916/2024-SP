@@ -1,31 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비품 관리 시스템</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/equipments.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <h1>비품 등록</h1>
-    <form action="/add_equipment" method="POST">
-        <label for="name">이름:</label>
-        <input type="text" id="name" name="name"><br><br>
-        <label for="category">카테고리:</label>
-        <input type="text" id="category" name="category"><br><br>
-        <label for="description">설명:</label>
-        <textarea id="description" name="description"></textarea><br><br>
-        <label for="quantity">수량:</label>
-        <input type="number" id="quantity" name="quantity"><br><br>
-        <label for="purchase_date">구매일:</label>
-        <input type="date" id="purchase_date" name="purchase_date"><br><br>
-        <label for="location">위치:</label>
-        <input type="text" id="location" name="location"><br><br>
-        <button type="submit">등록</button>
-    </form>
+    <div class="header">
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+        </a>
+        <nav>
+          <ul class="container ul-reset">
+            {% include 'navbar.html' %}
+          </ul>
+        </nav>
+    </div>
 
-    <h1>비품 목록</h1>
+    <div class="container1">
+        <div class="aside">
+            <h3> 게시판 </h3>
+            <a href="javascript:void(0)">
+            공지사항
+            </a>
+            <a href="javascript:void(0)" class="active">
+            비품게시판
+            </a>
+    </div>
+
+    <div class="main-content">
+        <div class="top_bg">
+          <h3>숭실대 AI융합학부</h3>
+          <p>게시판</p>
+        </div>
+
+        <div class="path">
+            <ul>
+              <li>
+                <i class="fa-solid fa-house">&nbsp;</i>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>게시판</li>
+              <li>
+              <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>비품게시판</li>
+            </ul>
+            <h4></h4>
+          </div>
+
+<main>   
+    <div class="title">비품 등록</div>       
+    <div class="container-eq">
+        <div class="content-eq">
+            <form action="/add_equipment" method="POST">
+                <div class="eq-details">
+                    <div class="input-box">
+                        <label for="detail">이름:</label>
+                        <input type="text" id="name" name="name">
+                    </div>
+                    <div class="input-box">
+                        <label for="detail">카테고리:</label>
+                        <input type="text" id="category" name="category">
+                    </div>
+                    <div class="input-box">
+                        <label for="detail">설명:</label>
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                    <div class="input-box">
+                        <label for="detail">수량:</label>
+                        <input type="number" id="quantity" name="quantity">
+                    </div>
+                    <div class="input-box">
+                        <label for="detail">구매일:</label>
+                        <input type="date" id="purchase_date" name="purchase_date">
+                    </div>
+                    <div class="input-box">
+                        <label for="detail">위치:</label>
+                        <input type="text" id="location" name="location">
+                    </div>
+                </div>
+                <div class="button">
+                    <input type="submit" value="등록">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="title">비품 목록</div>
     <table>
         <thead>
             <tr>
@@ -75,6 +141,7 @@
             {% endfor %}
         </tbody>
     </table>
+</main>
     {%with messages = get_flashed_messages()%}
     {%if messages %}
       <script type="text/javascript"> //Flask에서 경고문이 왔다면 창에 띄워준다
