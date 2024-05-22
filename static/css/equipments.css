@@ -2,26 +2,148 @@ body {
     color: black;
 }
 
-table {
-    border-collapse: collapse;
+main {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+    align-items: center; 
+}
+
+.title{
+    font-size: 35px;
+    font-weight: 600;
+    color: #006694;
+    position: relative;
+}
+
+.container-eq {
+    height: 50vh;
+    max-width: 700px;
     width: 100%;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    margin-bottom: 70px;
+}
+
+.content-eq form .eq-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .eq-details .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+form .input-box label.detail{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.eq-details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.eq-details .input-box textarea{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.eq-details .input-box input:focus,
+.eq-details .input-box input:valid{
+  border-color: #60c1c3;
+}
+
+.eq-details .input-box textarea:focus,
+.eq-details .input-box textarea:valid{
+  border-color: #60c1c3;
+}
+
+form .button{
+    height: 45px;
+    margin: 35px 0
+}
+
+form .button input{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #009bcb;
+  }
+form .button input:hover{
+   background: #006f91;
+}
+
+@media(max-width: 584px){
+   .container-eq{
+      max-width: 100%;
+    }
+   form .eq-details .input-box{
+      margin-bottom: 15px;
+      width: 100%;
+    }
+   .content-eq form .eq-details{
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+   .eq-details::-webkit-scrollbar{
+      width: 5px;
+    }
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 th, td {
-    border: 1px solid #dddddd;
-    text-align: center;
     padding: 8px;
-    color: black; /* 글씨 색깔 검은색으로 설정 */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-decoration: none;
 }
+
+td {
+    color: #003366;
+ }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #003366;
+    color: #fff;
 }
 
-/* 최근 사용자와 학번 셀의 간격을 조정 */
 th:nth-child(6), td:nth-child(6),
 th:nth-child(7), td:nth-child(7) {
-    padding: 2px; /* 최근 사용자와 학번 셀에 대한 새로운 간격 */
+    padding: 2px;
 }
 
 form {
@@ -30,7 +152,7 @@ form {
 }
 
 button {
-    background-color: #2196F3;
+    background-color: #009bcb;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -43,5 +165,5 @@ button {
 }
 
 button:hover {
-    background-color: #1976D2;
+    background-color: #006f91;
 }
