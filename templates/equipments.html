@@ -115,17 +115,19 @@
                 <td>{{ equipment.category }}</td>
                 <td>{{ equipment.description }}</td>
                 <td>
-                    {{ equipment.quantity }}&nbsp;&nbsp;
+                <div class="quantity-control">
                     <form action="/modify_equipment_minus" method="POST">
                         <input type="hidden" name="id" value="{{ equipment.id }}">
                         <input type="hidden" name="quantity" value="{{ equipment.quantity }}">
                         <button>-1</button>
                     </form>
+                    <span>{{ equipment.quantity }}</span>
                     <form action="/modify_equipment_plus" method="POST">
                         <input type="hidden" name="id" value="{{ equipment.id }}">
                         <input type="hidden" name="quantity" value="{{ equipment.quantity }}">
                         <button>+1</button>
                     </form>
+                </div>
                 </td>
                 <td>{{ equipment.latest_name }}</td>
                 <td>{{ equipment.latest_number }}</td>
