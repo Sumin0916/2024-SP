@@ -51,7 +51,8 @@ def home():
 
 @bp.route('/facility')
 def facility():
-    return render_template('facility.html')
+    user_info = session.get('user_info')
+    return render_template('facility.html', user_info=user_info)
 
 
 @bp.route('/register', methods=['POST'])
