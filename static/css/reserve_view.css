@@ -33,15 +33,3 @@ h1{
 .fc-col-header-cell-cushion, .fc-daygrid-day-number {
     color: #3498db;
 }
-
-  /*footer*/
-
-  .footer {
-    background-color: #60c1c3;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    bottom: 0;
-    width: 100%;
-    margin-left: 10%;
-  }
