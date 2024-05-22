@@ -267,11 +267,13 @@ def reserve():
         date = request.form.get('date')
         time_slot = request.form.get('time_slot')
         room = request.form.get('room')
+        student_name = user_info.get('student_name')
+        student_num = user_info.get('student_num')
         if not date or not time_slot or not room:
             return render_template('reserve.html', error="Please select date, time slot, and room.", date=date,
                                    available_slots=get_time_slots(), rooms=get_rooms())
 
-        existing = db.fetch("SELECT * FROM reservations WHERE date = %s AND time_slot = %s AND room = %s",
+        existing = db.fetch("SELECT * FROM reservations_new WHERE date = %s AND time_slot = %s AND room = %s",
                             (date, time_slot, room))
         if existing:
             error = "이미 예약된 시간대입니다. 다른 시간 또는 다른 세미나실을 선택해 주세요."
@@ -279,39 +281,68 @@ def reserve():
             return render_template('reserve.html', error=error, date=date, available_slots=get_time_slots(),
                                    taken_slots=taken_slots, rooms=get_rooms(), selected_room=room)
 
-        db.execute("INSERT INTO reservations (date, time_slot, room) VALUES (%s, %s, %s)", (date, time_slot, room))
+        db.execute("INSERT INTO reservations_new (date, time_slot, room, student_id, student_name) VALUES (%s, %s, %s, %s, %s)", (date, time_slot, room, student_num, student_name))
         flash("예약이 완료되었습니다.")
         return redirect(url_for('main.reserve_view'))
-    else:
-        date = request.args.get('date', str(datetime.today().strftime('%Y-%m-%d')))
-        room = request.args.get('room', 'room1')  #default
-        taken_slots = get_available_slots(date, room)
-        return render_template('reserve.html', date=date, available_slots=get_time_slots(),
-                               taken_slots=taken_slots, rooms=get_rooms(), selected_room=room, user_info=user_info)
 
-
-@bp.route('/add_reservation', methods=['POST'])
-def add_reservation():
-    data = request.get_json()
-    date = data['date']
-    time_slot = data['time_slot']
-    db.execute("INSERT INTO reservations (date, time_slot) VALUES (%s, %s)", (date, time_slot))
-    return jsonify({"status": "success", "message": "성공적으로 예약되었습니다!"})
+    date = request.args.get('date', str(datetime.today().strftime('%Y-%m-%d')))
+    room = request.args.get('room', 'room1')  #default
+    taken_slots = get_available_slots(date, room)
+    return render_template('reserve.html', date=date, available_slots=get_time_slots(),
+                            taken_slots=taken_slots, rooms=get_rooms(), selected_room=room, user_info=user_info)
 
 
 @bp.route('/reserve_view')
 def reserve_view():
     # message = request.args.get('message', '')
     user_info = session.get('user_info')
-    sql = "SELECT * FROM reservations ORDER BY date, time_slot"
+    sql = "SELECT * FROM reservations_new ORDER BY date, time_slot"
     reservations = db.fetch(sql)
     return render_template('reserve_view.html', reservations=reservations, user_info=user_info)
 
 
+@bp.route('/reserve_my')
+def reserve_my():
+    user_info = session.get('user_info')
+    if not user_info:
+            flash("로그인이 필요한 서비스입니다.")
+            return redirect(url_for('main.login_account'))
+    student_id = user_info.get("student_num")
+    student_name = user_info.get("student_name")
+    sql = "SELECT * FROM reservations_new WHERE student_id = %s AND student_name = %s"
+    res = db.executeAll(sql, (student_id, student_name))
+    return render_template('reserve_my.html', reservations=res, student_name=student_name)
+
+
+@bp.route('/reserve_edit/<int:num>/',methods=['GET', 'POST'])
+def reserve_edit(num):
+    user_info = session.get('user_info')
+    if not user_info:
+            flash("로그인이 필요한 서비스입니다.")
+            return redirect(url_for('main.reserve_my'))
+    if request.method == 'POST':
+        return redirect(url_for('main.login_account'))
+    sql = "SELECT * FROM reservations_new WHERE id = %s"
+    reservations = db.executeOne(sql, (num))
+    return render_template('reserve_edit.html', reservations=reservations)
+
+@bp.route('/reserve_delete/<int:num>/')
+def reserve_delete(num):
+    user_info = session.get('user_info')
+    if not user_info:
+            flash("로그인이 필요한 서비스입니다.")
+            return redirect(url_for('main.reserve_my'))
+    student_id = user_info.get("student_num")
+    sql = "DELETE FROM reservations_new WHERE id = %s AND student_id = %s"
+    db.executeOne(sql, (num, student_id))  
+    db.commit()
+    flash("예약이 삭제되었습니다.")
+    return redirect(url_for('main.reserve_my'))
+
 @bp.route('/get-reservations')
 def get_reservations():
     # sql1 = "SELECT * FROM reservations ORDER BY date, time_slot"
-    sql2 = "SELECT date, time_slot, room FROM reservations"
+    sql2 = "SELECT date, time_slot, room FROM reservations_new"
     reservations = db.fetch(sql2)
     events = []
     # FullCalendar의 이벤트 형식에 맞춰 데이터 변환
@@ -331,6 +362,7 @@ def get_reservations():
             'color': room_color.get(reservation['room'], '#333')
         })
     return jsonify(events)  # JSON 형식으로 이벤트 데이터 반환
+
 
 
 @bp.route('/admin')  # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지

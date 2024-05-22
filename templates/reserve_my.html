@@ -1,0 +1,49 @@
+<!-- reserve_my.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 확인 페이지</title>
+</head>
+<body>
+    <h1>{{ student_name }}의 예약 확인 페이지</h1>
+    {% if reservations %} <!-- 예약 정보가 존재할 때 -->
+        <table border="1"> 
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Time Slot</th>
+                    <th>Room</th>
+                    <th>Actions</th> <!-- 수정과 삭제 버튼을 추가하기 위한 열 -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for reservation in reservations %}
+                    <tr>
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.date }}</td>
+                        <td>{{ reservation.time_slot }}</td>
+                        <td>{{ reservation.room }}</td>
+                        <td>
+                            <a href="/reserve_edit/{{ reservation.id }}/">수정</a>
+                            <a href="/reserve_delete/{{ reservation.id }}/">삭제</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %} <!-- 예약 정보가 없을 때 -->
+        <p>예약 정보가 없습니다.</p>
+        <a href="{{ url_for('main.reserve') }}">예약 페이지로 이동</a>
+    {% endif %}
+    {%with messages = get_flashed_messages()%}
+    {%if messages %}
+      <script type="text/javascript"> //Flask에서 경고문이 왔다면 창에 띄워준다
+        alert("{{messages[-1]}}");
+      </script>
+      {%endif%}
+    {%endwith%}
+</body>
+</html>
