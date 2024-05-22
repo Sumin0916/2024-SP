@@ -72,17 +72,6 @@ main a:hover {
     text-decoration: underline;
 }
 
-  /*footer*/
-
-.footer {
-    background-color: #60c1c3;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    bottom: 0;
-    width: 100%;
-  }
-
 /* 달력 */
 
 .flatpickr-calendar {
