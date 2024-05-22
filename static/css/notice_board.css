@@ -93,15 +93,3 @@ td a:hover {
     background-color: #003366;
     color: #fff;
 }
-
-/*footer*/
-
-.footer {
-    background-color: #60c1c3;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    bottom: 0;
-    margin-left: 250px; 
-    width: calc(100% - 250px); 
-  }
