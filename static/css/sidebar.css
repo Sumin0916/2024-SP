@@ -127,3 +127,13 @@ color: #fff;
   font-size: 22px;
   margin-right : 0%;
 }
+
+.footer {
+    background-color: #60c1c3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+  }
