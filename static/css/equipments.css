@@ -18,7 +18,6 @@ main {
 }
 
 .container-eq {
-    height: 50vh;
     max-width: 700px;
     width: 100%;
     background-color: #fff;
@@ -26,6 +25,7 @@ main {
     border-radius: 5px;
     box-shadow: 0 5px 10px rgba(0,0,0,0.15);
     margin-bottom: 70px;
+    overflow: hidden;
 }
 
 .content-eq form .eq-details {
@@ -46,18 +46,7 @@ form .input-box label.detail{
     margin-bottom: 5px;
 }
 
-.eq-details .input-box input{
-    height: 45px;
-    width: 100%;
-    outline: none;
-    font-size: 16px;
-    border-radius: 5px;
-    padding-left: 15px;
-    border: 1px solid #ccc;
-    border-bottom-width: 2px;
-    transition: all 0.3s ease;
-}
-
+.eq-details .input-box input,
 .eq-details .input-box textarea{
     height: 45px;
     width: 100%;
@@ -71,10 +60,7 @@ form .input-box label.detail{
 }
 
 .eq-details .input-box input:focus,
-.eq-details .input-box input:valid{
-  border-color: #60c1c3;
-}
-
+.eq-details .input-box input:valid,
 .eq-details .input-box textarea:focus,
 .eq-details .input-box textarea:valid{
   border-color: #60c1c3;
@@ -82,7 +68,8 @@ form .input-box label.detail{
 
 form .button{
     height: 45px;
-    margin: 35px 0
+    margin: 35px 0;
+    width: 100%;
 }
 
 form .button input{
@@ -97,7 +84,8 @@ form .button input{
     cursor: pointer;
     transition: all 0.3s ease;
     background: #009bcb;
-  }
+}
+
 form .button input:hover{
    background: #006f91;
 }
@@ -166,4 +154,17 @@ button {
 
 button:hover {
     background-color: #006f91;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-control form {
+    display: inline;
+}
+
+.quantity-control span {
+    margin: 0 10px;
 }
