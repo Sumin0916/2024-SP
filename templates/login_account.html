@@ -63,5 +63,12 @@
         </div>
 
         <script src="{{ url_for('static', filename='js/login_script.js') }}"></script>
+        {%with messages = get_flashed_messages()%}
+        {%if messages %}
+          <script type="text/javascript"> //Flask에서 경고문이 왔다면 창에 띄워준다
+            alert("{{messages[-1]}}");
+          </script>
+          {%endif%}
+        {%endwith%}
     </body>
 </html>
