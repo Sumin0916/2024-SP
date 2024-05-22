@@ -167,3 +167,13 @@ button {
 button:hover {
     background-color: #006f91;
 }
+
+.footer {
+    background-color: #60c1c3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+    width: 100%;
+    margin-left: 10%;
+  }
