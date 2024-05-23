@@ -42,6 +42,10 @@ form .input-box label.detail{
     margin-bottom: 5px;
 }
 
+.input-box label {
+    color: #003366; 
+}
+
 .eq-details .input-box input,
 .eq-details .input-box textarea{
     height: 45px;
