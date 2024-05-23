@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 수정</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reserve.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+</head>
+<body>
+    <div class="header">
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+        </a>
+        <nav>
+            <ul class="container ul-reset">
+                {% include 'navbar.html' %}
+            </ul>
+        </nav>
+    </div>
+    <div class="container1">
+        <div class="aside">
+            <h3> 예약 수정 </h3>
+            <a href="javascript:void(0)" class="active"> 세미나실 예약 </a>
+            <a href="/reserve_view"> 예약 현황 </a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="top_bg">
+            <h3>숭실대 AI융합학부</h3>
+            <p>세미나실 예약</p>
+        </div>
+    </div>
+    <div class="path">
+        <ul>
+            <li>
+                <i class="fa-solid fa-house">&nbsp;</i>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+            </li>
+            <li>예약하기</li>
+            <li>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+            </li>
+            <li>세미나실 예약 변경</li>
+        </ul>
+        <h4></h4>
+    </div>
+    <main>
+        <h1>변경을 원하는 시간을 선택해 주세요.</h1>
+        <div style="margin-top: 100px;"></div>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form action="/reserve_edit/{{ reservation.id }}" method="post">
+            <label for="date">날짜:</label>
+            <input type="text" id="date" name="date" value="{{ date }}" required>
+            <label for="time_slot">시간:</label>
+            <select id="time_slot" name="time_slot" required>
+                {% for slot in available_slots %}
+                <option value="{{ slot }}" {% if slot == selected_time_slot %}selected{% endif %}>{{ slot }}</option>
+                {% endfor %}
+            </select>
+            <label for="room">Room:</label>
+            <select id="room" name="room" required>
+                {% for rm in rooms %}
+                <option value="{{ rm }}" {% if rm == selected_room %}selected{% endif %}>{{ rm }}</option>
+                {% endfor %}
+            </select>
+            <div style="margin-top: 50px;"></div>
+            <button type="submit">예약하기</button>
+        </form>
+        <div style="margin-top: 50px;"></div>
+        <a href="/reserve_view">전체 예약 현황 보기</a>
+    </main>
+    <div style="margin-top: 100px;"></div>
+
+    <div class="footer">
+        <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
+        <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
+    </div>
+
+    <script>
+        flatpickr("#date", {
+            locale: "ko",
+            altInput: true,
+            altFormat: "Y년 n월 j일", 
+            dateFormat: "Y-m-d",
+            altInputClass: "alt-input-class",
+        });
+    </script>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <script type="text/javascript"> // Flask에서 경고문이 왔다면 창에 띄워준다
+        alert("{{ messages[-1] }}");
+      </script>
+    {% endif %}
+    {% endwith %}
+</body>
+</html>

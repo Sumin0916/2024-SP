@@ -311,7 +311,7 @@ def reserve_my():
     student_name = user_info.get("student_name")
     sql = "SELECT * FROM reservations_new WHERE student_id = %s AND student_name = %s"
     res = db.executeAll(sql, (student_id, student_name))
-    return render_template('reserve_my.html', reservations=res, student_name=student_name)
+    return render_template('reserve_my.html', reservations=res, student_name=student_name, user_info=user_info)
 
 
 @bp.route('/reserve_edit/<int:num>/',methods=['GET', 'POST'])
@@ -319,12 +319,36 @@ def reserve_edit(num):
     user_info = session.get('user_info')
     if not user_info:
             flash("로그인이 필요한 서비스입니다.")
-            return redirect(url_for('main.reserve_my'))
+            return redirect(url_for('main.login_account'))
+
     if request.method == 'POST':
-        return redirect(url_for('main.login_account'))
+        date = request.form.get('date')
+        time_slot = request.form.get('time_slot')
+        room = request.form.get('room')
+
+        sql_update = """
+        UPDATE reservations_new
+        SET date = %s, time_slot = %s, room = %s
+        WHERE id = %s
+        """
+        existing = db.fetch("SELECT * FROM reservations_new WHERE date = %s AND time_slot = %s AND room = %s", (date, time_slot, room))
+        if existing:
+            flash("이미 예약된 시간대입니다. 다른 시간 또는 다른 세미나실을 선택해 주세요.")
+            taken_slots = get_available_slots(date, room)
+            return redirect(url_for('main.reserve_edit', num=num))
+        db.executeOne(sql_update, (date, time_slot, room, num))
+        db.commit()
+        flash("예약이 수정되었습니다.")
+        return redirect(url_for('main.reserve_my'))
+    
     sql = "SELECT * FROM reservations_new WHERE id = %s"
-    reservations = db.executeOne(sql, (num))
-    return render_template('reserve_edit.html', reservations=reservations)
+    reservation = db.executeOne(sql, (num))
+    date = reservation['date']
+    room = reservation['room']  #default
+    selected_time_slot = reservation['time_slot']
+    taken_slots = get_available_slots(date, room)
+    return render_template('reserve_edit.html', date=date, available_slots=get_time_slots(),
+                            taken_slots=taken_slots, rooms=get_rooms(), selected_room=room, user_info=user_info, reservation=reservation, selected_time_slot=selected_time_slot)
 
 @bp.route('/reserve_delete/<int:num>/')
 def reserve_delete(num):
@@ -336,7 +360,7 @@ def reserve_delete(num):
     sql = "DELETE FROM reservations_new WHERE id = %s AND student_id = %s"
     db.executeOne(sql, (num, student_id))  
     db.commit()
-    flash("예약이 삭제되었습니다.")
+    flash("예약이 취소되었습니다.")
     return redirect(url_for('main.reserve_my'))
 
 @bp.route('/get-reservations')
