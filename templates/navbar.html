@@ -17,8 +17,14 @@
               </ul>
               <ul class="ul-reset">
                  <li><a href='/reserve_my'>예약 확인</a></li>
-                 <li><a href='#'>예약 취소</a></li>
-                <li><a href='#'>예약 변경</a></li>
+                 <li>
+                   {% if user_info %}
+                   <a href='/mypage'>마이페이지</a>
+                   {% else %}
+                   <a href="javascript:void(0);" onclick="alert('로그인이 필요한 기능입니다');">마이페이지</a>
+                   {% endif %}
+                 </li>
+<!--                 <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
               </ul>
               <ul class="ul-reset">
                 {% if user_info %}
@@ -26,7 +32,7 @@
                 <li><h2>학번: {{ user_info.student_num }}</h2></li>
                 <li><h2>이름: {{ user_info.student_name }}</h2></li>
                 <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
-                <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+<!--                <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                 {% else %}
                 <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
                 {% endif %}
@@ -52,8 +58,14 @@
                     </ul>
                     <ul class="ul-reset">
                       <li><a href='/reserve_my'>예약 확인</a></li>
-                      <li><a href='#'>예약 취소</a></li>
-                      <li><a href='#'>예약 변경</a></li>
+                      <li>
+                        {% if user_info %}
+                        <a href='/mypage'>마이페이지</a>
+                        {% else %}
+                        <a href="javascript:void(0);" onclick="alert('로그인이 필요한 기능입니다');">마이페이지</a>
+                        {% endif %}
+                      </li>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                     </ul>
                     <ul class="ul-reset">
                       {% if user_info %}
@@ -61,7 +73,7 @@
                       <li><h2>학번: {{ user_info.student_num }}</h2></li>
                       <li><h2>이름: {{ user_info.student_name }}</h2></li>
                       <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
-                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                       {% else %}
                       <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
                       {% endif %}
@@ -87,8 +99,14 @@
                     </ul>
                     <ul class="ul-reset">
                       <li><a href='/reserve_my'>예약 확인</a></li>
-                      <li><a href='#'>예약 취소</a></li>
-                      <li><a href='#'>예약 변경</a></li>
+                      <li>
+                        {% if user_info %}
+                        <a href='/mypage'>마이페이지</a>
+                        {% else %}
+                        <a href="javascript:void(0);" onclick="alert('로그인이 필요한 기능입니다');">마이페이지</a>
+                        {% endif %}
+                      </li>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                     </ul>
                     <ul class="ul-reset">
                       {% if user_info %}
@@ -96,7 +114,7 @@
                       <li><h2>학번: {{ user_info.student_num }}</h2></li>
                       <li><h2>이름: {{ user_info.student_name }}</h2></li>
                       <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
-                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                       {% else %}
                       <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
                       {% endif %}
@@ -122,8 +140,14 @@
                     </ul>
                     <ul class="ul-reset">
                       <li><a href='/reserve_my'>예약 확인</a></li>
-                      <li><a href='#'>예약 취소</a></li>
-                      <li><a href='#'>예약 변경</a></li>
+                      <li>
+                        {% if user_info %}
+                        <a href='/mypage'>마이페이지</a>
+                        {% else %}
+                        <a href="javascript:void(0);" onclick="alert('로그인이 필요한 기능입니다');">마이페이지</a>
+                        {% endif %}
+                      </li>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                     </ul>
                     <ul class="ul-reset">
                       {% if user_info %}
@@ -131,7 +155,7 @@
                       <li><h2>학번: {{ user_info.student_num }}</h2></li>
                       <li><h2>이름: {{ user_info.student_name }}</h2></li>
                       <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
-                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                       {% else %}
                       <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
                       {% endif %}
@@ -157,8 +181,14 @@
                     </ul>
                     <ul class="ul-reset">
                       <li><a href='/reserve_my'>예약 확인</a></li>
-                      <li><a href='#'>예약 취소</a></li>
-                      <li><a href='#'>예약 변경</a></li>
+                      <li>
+                        {% if user_info %}
+                        <a href='/mypage'>마이페이지</a>
+                        {% else %}
+                        <a href="javascript:void(0);" onclick="alert('로그인이 필요한 기능입니다');">마이페이지</a>
+                        {% endif %}
+                      </li>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                     </ul>
                     <ul class="ul-reset">
                       {% if user_info %}
@@ -166,7 +196,7 @@
                       <li><h2>학번: {{ user_info.student_num }}</h2></li>
                       <li><h2>이름: {{ user_info.student_name }}</h2></li>
                       <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
-                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>
+<!--                      <button class="login-btn" onclick="location.href='/mypage'">마이페이지</button>-->
                       {% else %}
                       <button class="login-btn" onclick="location.href='/login_account'">로그인 / 회원가입</button>
                       {% endif %}
