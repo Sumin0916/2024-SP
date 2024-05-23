@@ -56,9 +56,14 @@
 
 <main>
     <div class="search">
-        <form action="">
-            <input type="text" placeholder="검색어를 입력하세요.">
-            <button>검색</button>
+        <form action="/search_board" method="get">
+            <input type="text" name="query" placeholder="검색어를 입력하세요." required>
+            <select name="type">
+                <option value="both">제목+내용</option>
+                <option value="title">제목만</option>
+                <option value="content">내용만</option>
+            </select>
+            <button type="submit">검색</button>
         </form>
 
         <form action="/write">

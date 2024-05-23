@@ -350,6 +350,7 @@ def reserve_edit(num):
     return render_template('reserve_edit.html', date=date, available_slots=get_time_slots(),
                             taken_slots=taken_slots, rooms=get_rooms(), selected_room=room, user_info=user_info, reservation=reservation, selected_time_slot=selected_time_slot)
 
+
 @bp.route('/reserve_delete/<int:num>/')
 def reserve_delete(num):
     user_info = session.get('user_info')
@@ -362,6 +363,7 @@ def reserve_delete(num):
     db.commit()
     flash("예약이 취소되었습니다.")
     return redirect(url_for('main.reserve_my'))
+
 
 @bp.route('/get-reservations')
 def get_reservations():
@@ -387,6 +389,14 @@ def get_reservations():
         })
     return jsonify(events)  # JSON 형식으로 이벤트 데이터 반환
 
+
+@bp.route('/search_board')
+def search():
+    query = request.args.get('query')
+    search_type = request.args.get('type')
+    # db = Database()
+    posts = db.searchPosts(query, search_type)
+    return render_template('notice_board.html', data_list=posts)
 
 
 @bp.route('/admin')  # 사용자들의 정보를 모두 볼 수 있는 관리자 페이지

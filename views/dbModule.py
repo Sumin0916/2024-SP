@@ -1,5 +1,6 @@
 import pymysql, hashlib
 
+
 class Database():
     def __init__(self):
         self.db = pymysql.connect(host='qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
@@ -96,6 +97,17 @@ class Database():
         d = self.executeOne(sql, write_id)
         self.commit()
         return d
+
+    def searchPosts(self, query, search_type):
+        if search_type == 'title':
+            sql = "SELECT * FROM board WHERE title LIKE %s"
+        elif search_type == 'content':
+            sql = "SELECT * FROM board WHERE content LIKE %s"
+        elif search_type == 'both':
+            sql = "SELECT * FROM board WHERE title LIKE %s OR content LIKE %s"
+            return self.executeAll(sql, (f'%{query}%', f'%{query}%'))
+
+        return self.executeAll(sql, (f'%{query}%',))
 
     def fetch(self, query, args={}):
         self.cursor.execute(query, args)
