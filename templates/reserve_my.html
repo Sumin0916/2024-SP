@@ -1,22 +1,66 @@
-<!-- reserve_my.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 확인 페이지</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/reserve_my.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
 </head>
 <body>
+    <div class="header">
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+        </a>
+        <nav>
+          <ul class="container ul-reset">
+            {% include 'navbar.html' %}
+          </ul>
+        </nav>
+
+    </div>
+
+    <div class="container1">
+        <div class="aside">
+            <h3> 내 예약 </h3>
+            <a href="javascript:void(0)"class="active">
+            예약 확인
+            </a>
+         </div>
+
+        <div class="main-content">
+          <div class="top_bg">
+            <h3>숭실대 AI융합학부</h3>
+            <p>내 예약</p>
+          </div>
+
+          <div class="path">
+            <ul>
+              <li>
+                <i class="fa-solid fa-house">&nbsp;</i>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>내 예약</li>
+            </ul>
+            <h4></h4>
+          </div>
+    <main>
+
     <h1>{{ student_name }}의 예약 확인 페이지</h1>
+
+    <div style="margin-top: 100px;"></div>
+
     {% if reservations %} <!-- 예약 정보가 존재할 때 -->
         <table border="1"> 
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Date</th>
-                    <th>Time Slot</th>
-                    <th>Room</th>
-                    <th>Actions</th> <!-- 수정과 삭제 버튼을 추가하기 위한 열 -->
+                    <th>아이디</th>
+                    <th>날짜</th>
+                    <th>시간</th>
+                    <th>세미나실</th>
+                    <th>변경 및 취소</th> <!-- 수정과 삭제 버튼을 추가하기 위한 열 -->
                 </tr>
             </thead>
             <tbody>
@@ -27,8 +71,8 @@
                         <td>{{ reservation.time_slot }}</td>
                         <td>{{ reservation.room }}</td>
                         <td>
-                            <a href="/reserve_edit/{{ reservation.id }}/">수정</a>
-                            <a href="/reserve_delete/{{ reservation.id }}/">삭제</a>
+                            <a href="/reserve_edit/{{ reservation.id }}/">예약 변경</a>
+                            <a href="/reserve_delete/{{ reservation.id }}/">예약 취소</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -45,5 +89,14 @@
       </script>
       {%endif%}
     {%endwith%}
+    </main>
+
+    <div style="margin-top: 100px;"></div>
+
+    <div class="footer">
+        <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
+        <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
+      </div>
+
 </body>
 </html>
