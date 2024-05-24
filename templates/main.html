@@ -37,39 +37,37 @@
 
     <div style="margin-top: 200px;"></div>
 
-    <p style="text-align: center; color: #006694; font-size: 20px; margin-bottom: 20px;">저희 AI융합학부에는 3개의 세미나실이 준비되어 있습니다.</p>
+    <h1>세미나실 예약 현황</h1>
 
     <div style="margin-top: 100px;"></div>
 
-    <div class="card-container">
-        <div class="card">
-            <img src="{{ url_for('static', filename='img/lecture_hall.jpg') }}" alt="Lecture Hall 1">
-            <div class="card-content">
-                <h2 class="card-title">세미나실 1</h2>
-                <p class="card-description">인원 4 ~ 6명</p>
-            </div>
-        </div>
+    <div id='mainCalendar'></div>
 
-        <div class="card">
-            <img src="{{ url_for('static', filename='img/lecture_hall.jpg') }}" alt="Lecture Hall 2">
-            <div class="card-content">
-                <h2 class="card-title">세미나실 2</h2>
-                <p class="card-description">인원 4 ~ 6명</p>
-            </div>
-        </div>
-
-<!--        <div class="card">-->
-<!--            <img src="{{ url_for('static', filename='img/lecture_hall.jpg') }}" alt="Lecture Hall 3">-->
-<!--            <div class="card-content">-->
-<!--                <h2 class="card-title">세미나실 3</h2>-->
-<!--                <p class="card-description">인원 4 ~ 6명</p>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('mainCalendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: '/get-reservations',
+                eventDisplay: 'block',
+                displayEventTime: false,
+                eventTimeFormat: {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    meridiem: false,
+                    hour12: false
+                }
+            });
+            calendar.render();
+        });
+    </script>
 
     <div style="margin-top: 50px;"></div>
-    <p style="text-align: center; color: #006694; font-size: 15px; margin-bottom: 20px;">세미나실을 선택하면 더 자세한 정보를 볼 수 있습니다.</p>
-    <div style="margin-top: 100px;"></div>
+
+    <button class="reserve-btn" onclick="location.href='/reserve'">세미나실 예약하러 가기</button>
+
+    <div style="margin-top: 200px;"></div>
 
     <div class="footer">
         <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
