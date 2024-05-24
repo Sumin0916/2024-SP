@@ -1,5 +1,3 @@
-
-
 .hero {
   background-image: url('/static/img/summer_ssu.jpg'); 
   background-size: cover; 
@@ -54,48 +52,19 @@
   height: 230px; 
 }
 
-.card-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  flex-wrap: wrap; 
+.recent-notices table {
+  width: 50%;
+  border-collapse: collapse;
 }
 
-.card {
-  width: 300px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
+.recent-notices th, .recent-notices td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
 }
 
-.card img {
-  width: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.card-content {
-  padding: 20px;
-}
-
-.card-title {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #009bcb;
-}
-
-.card-description {
-  font-size: 16px;
-  color: #009bcb;
-}
-
-.card:hover {
-  transform: scale(1.05);
+.recent-notices th {
+  background-color: #009bcb;
 }
 
 .footer {
@@ -107,3 +76,30 @@
   width: 100%;
 }
 
+#mainCalendar {
+  max-width: 70%; 
+  margin: 0 auto;
+  color:#2980b9
+}
+
+.fc-col-header-cell-cushion, .fc-daygrid-day-number {
+  color: #3498db;
+}
+
+h1{ 
+  text-align: center;
+  color:#2980b9
+}
+
+.reserve-btn {
+  color: #3498db;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  margin-left: 60%;
+}
+.reserve-btn:hover {
+  text-decoration: underline;
+}
