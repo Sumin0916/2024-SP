@@ -17,7 +17,8 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 32, 138, 0.3);
-    margin-top: 50px;
+    margin-top: 0;
+    margin-bottom: 70px;
 }
 
 h1 {
@@ -75,4 +76,21 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #c82333;
+}
+
+.notice-btn {
+    background-color: #009bcb; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 18px; 
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    margin-top: 7px;
+}
+  
+.notice-btn:hover {
+    background-color: #006694; 
+    color: #ffffff;
 }
