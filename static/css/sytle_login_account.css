@@ -108,6 +108,10 @@ body{
     text-decoration: underline;
 }
 
+.sign-in h1 {
+    margin-bottom: 20px;
+}
+
 .container.active .sign-in{
     transform: translateX(100%);
 }
@@ -117,6 +121,10 @@ body{
     width: 50%;
     opacity: 0;
     z-index: 1;
+}
+
+.sign-up h1 {
+    margin-bottom: 20px;
 }
 
 .container.active .sign-up{
@@ -135,21 +143,6 @@ body{
         opacity: 1;
         z-index: 5;
     }
-}
-
-.social-icon{
-    margin: 20px 0;
-}
-
-.social-icon a{
-    border: 1px solid #ccc;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
 }
 
 .toggle-container{
