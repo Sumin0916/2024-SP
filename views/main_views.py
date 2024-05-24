@@ -184,7 +184,7 @@ def notice_board():
 def write():
     user_info = session.get('user_info')
     if user_info:
-        return render_template('write_post.html')
+        return render_template('write_post.html', user_info=user_info)
 
     flash("로그인이 필요합니다.")
     return redirect(url_for('main.notice_board'))
@@ -212,7 +212,7 @@ def edit_post(post_id):
         if user_info.get('account_id') != article.get('writer'):
             flash("수정할 권한이 없습니다.")
             return redirect(url_for('main.notice_board'))  # 게시글 목록 페이지로 리디렉션
-        return render_template('edit_post.html', article=article)
+        return render_template('edit_post.html', article=article, user_info=user_info)
     else:
         title = request.form['title']
         content = request.form['content']
