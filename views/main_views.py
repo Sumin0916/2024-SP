@@ -66,9 +66,9 @@ def register():
 
     if db.addStudent(account_id, student_name, password, student_num, phone_num):
         flash("회원가입 완료!")
+    else:
+        flash("중복된 회원 정보가 존재합니다.")
         return redirect(url_for('main.login_account'))
-
-    flash("이미 존재하는 아이디입니다.")
     return redirect(url_for('main.login_account'))
 
 

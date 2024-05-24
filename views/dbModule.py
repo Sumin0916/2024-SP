@@ -38,7 +38,7 @@ class Database():
         hashed_pw = hashlib.sha256(pw.encode()).hexdigest()
         result_row = self.executeOne(sql, (account_id, name, hashed_pw, student_num, phone_num))
         self.commit()
-        return result_row
+        return True
 
     def searchAccount(self, login_id, login_pw):
         sql = "SELECT * FROM user WHERE account_id=%s AND password_hash=%s"
