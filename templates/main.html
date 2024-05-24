@@ -26,7 +26,13 @@
         <div class="hero">
             <div class="hero-overlay">
                 <h1 class="hero-text">역사로 미래를 여는 대학<br>숭실대학교 AI융합학부</h1>
-                <button class="login-btn"onclick="location.href='/login_account'">로그인</button>
+                {% if not user_info %}
+                    <button class="login-btn" onclick="location.href='/login_account'">로그인</button>
+                {% else %}
+                    <div><h3>학과: AI융합학부</h3></div>
+                    <div><h3>이름: {{ user_info.student_name }}   학번: {{ user_info.student_num }}</h3></div>  
+                    <button class="login-btn" onclick="location.href='/logout'">로그아웃</button>
+                {% endif %}
             </div>
             <button class="btn" onclick="location.href='/facility'">시설 안내</button>
             <button class="btn" onclick="location.href='/reserve'">예약하기</button>
