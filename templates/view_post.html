@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="article-content">
-            <p> {{ article.content }}</p>
+            <p> {{ article.content | replace('\n', '<br>') | safe }}</p>
         </div>
         <!-- 삭제 버튼 추가 -->
         {% if user_info and article.writer == user_info.get("account_id") %}

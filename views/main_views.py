@@ -17,7 +17,7 @@ def get_available_slots(date, room):
 
 
 def get_rooms():
-    return ['세미나룸1', '세미나룸2']
+    return ['세미나실1', '세미나실2']
 
 
 @bp.route('/')
