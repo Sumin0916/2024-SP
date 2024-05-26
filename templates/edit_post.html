@@ -4,20 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시물 편집</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/edit_post.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
 </head>
 <body>
-    <h1>게시물 편집</h1>
-    <form action="/edit_post/{{ article.num }}" method="POST">
-        <label for="title">제목:</label><br>
-        <input type="text" id="title" name="title" value="{{ article.title }}"><br>
-        <label for="content">내용:</label><br>
-        <textarea id="content" name="content">{{ article.content }}</textarea><br>
-        <label for="theme">테마:</label><br>
-        <select id="theme" name="theme">
-            <option value="일반" {% if article.theme == '일반' %} selected {% endif %}>일반</option>
-            <option value="공지" {% if article.theme == '공지' %} selected {% endif %}>공지</option>
-        </select><br>
-        <button type="submit">저장</button>
-    </form>
+    <div class="header">
+        <a href="/">
+          <img src="{{ url_for('static', filename='img/logo2.png') }}" class="logo" alt="Soongsil University Logo">
+        </a>
+          <nav>
+            <ul class="container ul-reset">
+              {% include 'navbar.html' %}
+            </ul>
+          </nav>
+      </div>
+  
+      <div class="container1">
+          <div class="aside">
+              <h3> 게시판 </h3>
+              <a href="javascript:void(0)" class="active">
+              공지사항
+              </a>
+              <a href="javascript:void(0)">
+              비품게시판
+              </a>
+      </div>
+      <div class="main-content">
+        <div class="top_bg">
+          <h3>숭실대 AI융합학부</h3>
+          <p>게시판</p>
+        </div>
+
+        <div class="path">
+            <ul>
+              <li>
+                <i class="fa-solid fa-house">&nbsp;</i>
+                <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>게시판</li>
+              <li>
+              <i class="fa-solid fa-angle-right">&nbsp;</i>
+              </li>
+              <li>자유게시판</li>
+            </ul>
+            <h4></h4>
+          </div>
+
+    <main>      
+        <div class="edit">
+            <h1 class="edit-title">게시물 편집</h1>
+            <hr>
+            <br>
+            <form action="/edit_post/{{ article.num }}" method="POST">
+                <label for="title">제목:</label><br>
+                <input type="text" id="title" name="title" value="{{ article.title }}"><br>
+                <label for="content">내용:</label><br>
+                <textarea id="content" name="content">{{ article.content }}</textarea><br>
+                <label for="theme">테마:</label><br>
+                <select id="theme" name="theme">
+                    <option value="일반" {% if article.theme == '일반' %} selected {% endif %}>일반</option>
+                    <option value="공지" {% if article.theme == '공지' %} selected {% endif %}>공지</option>
+                </select><br>
+                <button type="submit">저장</button>
+            </form>
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>06978 서울시 동작구 상도로 369 숭실대학교 형남공학관 424호</p>
+        <p>E-Mail : smartsystem@soongsil.ac.kr | Tel: 02-820-0950</p>
+    </div>
+
 </body>
 </html>
