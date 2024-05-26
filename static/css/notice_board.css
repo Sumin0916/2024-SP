@@ -21,6 +21,16 @@ main {
     border-radius: 4px; 
 }
 
+.search select {
+    border: 1.5px solid #003366;
+    border-radius: 4px;
+}
+
+.search select:focus {
+    border: 1.5px solid #0072e4;
+    outline: 3px solid #bedeff;
+}
+
 .search button {
     padding: 8px 16px; 
     background-color: #003366;
