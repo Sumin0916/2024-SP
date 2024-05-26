@@ -1,0 +1,98 @@
+main {
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px; 
+    width: calc(100% - 250px); 
+    align-items: center; 
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.edit {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 32, 138, 0.3);
+    margin-left: 10%
+}
+
+.edit-title {
+    color: #2053a3;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background: #ccc;
+    text-align: center;
+    width: 80%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin: 10px 0 5px;
+    color: #2053a3;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form textarea{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+form select {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-left: 40%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form textarea:focus,
+form select:focus {
+    border-color: #2053a3;
+}
+
+form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #2053a3;
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-left: 0%;
+}
+
+button[type="submit"]:hover {
+    background-color: #163a70;
+}
