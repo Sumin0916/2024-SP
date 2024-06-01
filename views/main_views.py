@@ -378,7 +378,9 @@ def get_reservations():
         end_datetime = f"{reservation['date']}T{end_time}"
         room_color = {
             '세미나룸1': '#007bff',
+            '세미나실1': '#007bff',
             '세미나룸2': '#28a745',
+            '세미나실2': '#28a745',
             # 'room3': '#ffc107'
         }
         events.append({
