@@ -61,8 +61,6 @@ class Database():
         result_row = self.executeOne(sql, equipment_id)
         self.commit()
         student_name = user_info.get('student_name')
-        if (student_name not in result_row) and student_name != 'admin':
-            return 1
         sql = "DELETE FROM equipments WHERE id = %s"
         result_row = self.executeOne(sql, equipment_id)
         self.commit()
